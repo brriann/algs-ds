@@ -23,17 +23,3 @@ public class Intro {
         }
     }
 }
-
-/* import sys, numpy
-
-if len(sys.argv) < 2:
-    print('usage: python 0_intro.py x,y,z,a,b,c')
-else:
-    arrayArgument = sys.argv[1].split(',')
-
-    floatArray = numpy.array(arrayArgument).astype(numpy.int)
-    arraySum = numpy.sum(floatArray)
-
-    print(arrayArgument)
-    print('your array sum is:')
-    print(arraySum) */
