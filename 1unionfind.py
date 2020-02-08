@@ -20,10 +20,27 @@ class unionfind:
     def count():
         asdf = 1 + 1
 
-uf = unionfind(int(input("Enter n: ")))
+def takeFileInput():
+    asdf = 1 + 2
 
-p = int(input("Enter p: "))
-q = int (input("Enter q: "))
+def takeCommandLineInput():
+    n = int(input("Enter n: "))
+    p = int(input("Enter p: "))
+    q = int (input("Enter q: "))
+    return [n. p. q]
+
+##
+## Program starts here.
+##
+
+npq = takeCommandLineInput()
+
+n = npq[0]
+p = npq[1]
+q = npq[2]
+
+uf = unionfind(n)
+
 
 if not uf.connected(p, q):
     uf.union(p, q)

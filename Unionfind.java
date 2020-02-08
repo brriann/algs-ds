@@ -12,7 +12,15 @@ public class Unionfind {
     private int P;
     private int Q;
 
+    public Unionfind() {
+
+    }
+
     public Unionfind(int n) {
+        N = n;
+    }
+
+    public void setN(int n) {
         N = n;
     }
 
@@ -33,22 +41,42 @@ public class Unionfind {
     }
 
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter n: ");
-        int n = scan.nextInt();
+        
+        Unionfind uf = new Unionfind();
+        int[] input = uf.takeCommandLineInput();
+        // int[] input = uf.takeFileInput();
+    
+        uf.setN(input[0]);
 
-        Unionfind uf = new Unionfind(n);
-
-        System.out.println("Enter p: ");
-        int p = scan.nextInt();
-        System.out.println("Enter q: ");
-        int q = scan.nextInt();
+        int p = input[1];
+        int q = input[2];
+        
 
         if (!uf.connected(p, q)) {
             uf.union(p, q);
             System.out.println(p + " " + q);
         }
 
+        
+    }
+
+    public int[] takeCommandLineInput() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter n: ");
+        int n = scan.nextInt();
+        System.out.println("Enter p: ");
+        int p = scan.nextInt();
+        System.out.println("Enter q: ");
+        int q = scan.nextInt();
         scan.close();
+        int[] npq = new int[3];
+        npq[0] = n;
+        npq[1] = p;
+        npq[2] = q;
+        return npq;
+    }
+
+    public int[] takeFileInput() {
+        return new int[3];
     }
 }
