@@ -7,7 +7,7 @@ algs4.cs.princeton.edu
 
 Round 1 (Winter 2020): Java, Python, JS
 
-0. Tools
+00. Tools
 
     file: read a multi-line file with space delimiters to a 2D array
 
