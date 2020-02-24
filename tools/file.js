@@ -2,7 +2,7 @@ const fs = require('fs');
 const readline = require('readline');
 
 methods = {
-  readLinesToArray: function(filePath, callBack) {
+  readLinesTo2DArray: function(filePath, callBack) {
     var inputs = [];
     const rl = readline.createInterface({
       input: fs.createReadStream(filePath),

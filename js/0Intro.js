@@ -1,26 +1,31 @@
-// CLI usage: node 0Intro.js x,y,z,a,b,c
-var file = require('../tools/file.js');
+// CLI usage: 
+// node 0Intro.js x-y-z/a-b-c
 
-const INPUT_FILE_PATH = '/home/ubuntu/Dev/algs-ds/input/test1.txt'
+var file = require('../tools/file.js');
+var cli = require('../tools/cli.js');
+
+const INPUT_FILE_PATH = '/home/ubuntu/Dev/algs-ds/input/test2.txt'
 
 if (process.argv.length > 2) {
-    let arrayArgument = process.argv[2].split(',');
-    let arraySum = arrayArgument.reduce((a,b) => parseInt(a, 10) + parseInt(b, 10), 0);
-    console.log(arrayArgument);
-    console.log('your array sum is:');
-    console.log(arraySum);
+   cli.readArgTo2DArray(process.argv[2], function (cliInput) {
+        intro(cliInput);
+   });
+
 } else {
-    file.readLinesToArray(INPUT_FILE_PATH, function (inputs) {
-        intro(inputs);
+    file.readLinesTo2DArray(INPUT_FILE_PATH, function (fileInput) {
+        intro(fileInput);
     });
 }
 
 function intro (inputs) {
     console.log(inputs);
-    inputs.map( i => {
+    inputs.map(i => {
+        console.log(i);
+    });
+    inputs.map(i => {
         i.map(j => {
             console.log(j);
-            })
-    });
+        });
+    })
 }
 
