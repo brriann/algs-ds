@@ -6,7 +6,7 @@ package java1;
 // 4 5 6
 // 7 8 9
 
-public class Cli {
+public class CliReader {
 
     public static String rowDelimiter = "/";
     public static String cellDelimiter = "-";

@@ -8,7 +8,7 @@
 var file = require('/home/ubuntu/Dev/algs-ds/tools/file.js');
 var cli = require('/home/ubuntu/Dev/algs-ds/tools/cli.js');
 
-const INPUT_FILE_PATH = '/home/ubuntu/Dev/algs-ds/input/0intro2.txt'
+const INPUT_FILE_PATH = '/home/ubuntu/Dev/algs-ds/input/0intro3.txt'
 
 if (process.argv.length > 2) {
    cli.readArgTo2DArray(process.argv[2], function (cliInput) {

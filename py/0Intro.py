@@ -7,7 +7,7 @@
 
 import sys, importlib.util
 
-INPUT_FILE_PATH = '/home/ubuntu/Dev/algs-ds/input/0intro2.txt'
+INPUT_FILE_PATH = '/home/ubuntu/Dev/algs-ds/input/0intro3.txt'
 
 specFile = importlib.util.spec_from_file_location('file', '/home/ubuntu/Dev/algs-ds/tools/file.py')
 file = importlib.util.module_from_spec(specFile)

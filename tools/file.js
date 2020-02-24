@@ -6,6 +6,8 @@
 const fs = require('fs');
 const readline = require('readline');
 
+const cellDelimiter = ' ';
+
 methods = {
   readLinesTo2DArray: function(filePath, callBack) {
     var inputs = [];
@@ -15,7 +17,7 @@ methods = {
     });
     rl.on('line', (line) => {
         var lineArray = [];
-        var strings = line.split(' ');
+        var strings = line.split(cellDelimiter);
         for (var i = 0; i < strings.length; i++) {
             lineArray.push(Number(strings[i]));
         }

@@ -9,11 +9,13 @@ package java1;
 import java.util.Arrays;
 
 public class Intro {
+
+    public static String INPUT_FILE_PATH = "/home/ubuntu/Dev/algs-ds/input/0intro3.txt";
     public static void main(String[] args) {
         if (args.length > 0) {
-            introProgram(Cli.readArgTo2DArray(args[0]));
+            introProgram(CliReader.readArgTo2DArray(args[0]));
         } else {
-            System.out.print("not implemented yet.");
+            introProgram(FileReader.readLinesTo2DArray(INPUT_FILE_PATH));
         }
     }
 
