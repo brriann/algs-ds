@@ -7,16 +7,15 @@
 rowDelimiter = '/'
 cellDelimiter = '-'
 
-def lineHelper(row):
-    return row.split(cellDelimiter)
-
 def readArgTo2DArray(cliInput):
     array2D = []
     lines = cliInput.split(rowDelimiter)
     i = 0
     for line in lines:
         array2D.append([])
-        array2D[i] = [int(n) for n in line.split('-')]
+        array2D[i] = [int(n) for n in line.split(cellDelimiter)]
+        i += 1
+    return array2D
     
 
 
