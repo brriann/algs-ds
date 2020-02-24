@@ -38,3 +38,23 @@ Round 1 (Winter 2020): Java, Python, JS
     3quickunion.js, 3quickunion.py, Quickunion.java
 
     implement quick-union version of union-find
+
+
+    
+
+Dev Notes:
+
+cd algs-ds/js
+node Intro.js
+node Intro.js 1-2-3/4-5-6/7-8-9
+
+cd algs-ds
+source .env/venv/bin/activate
+cd py
+python Intro.py
+python Intro.py 1-2-3/4-5-6/7-8-9
+
+cd algs-ds
+javac java1/*.java
+java java1/Intro.java
+java java1/Intro.java 1-2-3/4-5-6/7-8-9
