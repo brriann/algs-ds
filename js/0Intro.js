@@ -1,5 +1,9 @@
 // CLI usage: 
 // node 0Intro.js x-y-z/a-b-c
+//
+// File usage:
+// x y z 
+// a b c
 
 var file = require('../tools/file.js');
 var cli = require('../tools/cli.js');
@@ -18,10 +22,13 @@ if (process.argv.length > 2) {
 }
 
 function intro (inputs) {
+    console.log('A.) Full 2D Array');
     console.log(inputs);
+    console.log('B.) Each Row');
     inputs.map(i => {
         console.log(i);
     });
+    console.log('C.) Each Cell');
     inputs.map(i => {
         i.map(j => {
             console.log(j);
