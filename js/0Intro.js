@@ -5,8 +5,8 @@
 // x y z 
 // a b c
 
-var file = require('../tools/file.js');
-var cli = require('../tools/cli.js');
+var file = require('/home/ubuntu/Dev/algs-ds/tools/file.js');
+var cli = require('/home/ubuntu/Dev/algs-ds/tools/cli.js');
 
 const INPUT_FILE_PATH = '/home/ubuntu/Dev/algs-ds/input/test2.txt'
 

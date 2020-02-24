@@ -11,8 +11,11 @@ methods = {
   readArgTo2DArray: function(cliInput, callBack) {
     var pivotedInputs = [];
     let lines = cliInput.split(rowDelimiter);
-    lines.map( i => {
-        pivotedInputs.push(i.split(cellDelimiter));
+    lines.map(i => {
+        pivotedInputs.push(
+            i.split(cellDelimiter).map(i => {
+                return parseInt(i, 10);
+            }));
     });
     callBack(pivotedInputs);
   }

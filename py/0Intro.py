@@ -1,16 +1,21 @@
+# CLI usage: 
+# node 0Intro.js x-y-z/a-b-c
+#
+# File usage:
+# x y z 
+# a b c
 
-# invoke this script with an int array from CLI as "python 0Intro.py 0,1,2,3,4"
+import sys, importlib.util
 
-import sys, numpy
+specFile = importlib.util.spec_from_file_location('file', '/home/ubuntu/Dev/algs-ds/tools/file.py')
+file = importlib.util.module_from_spec(specFile)
+specFile.loader.exec_module(file)
 
-if len(sys.argv) < 2:
-    print('usage: python 0Intro.py x,y,z,a,b,c')
+specCli = importlib.util.spec_from_file_location('cli', '/home/ubuntu/Dev/algs-ds/tools/cli.py')
+cli = importlib.util.module_from_spec(specCli)
+specCli.loader.exec_module(cli)
+
+if len(sys.argv) > 1:
+    cli.readArgTo2DArray(sys.argv[1])
 else:
-    arrayArgument = sys.argv[1].split(',')
-
-    floatArray = numpy.array(arrayArgument).astype(numpy.int)
-    arraySum = numpy.sum(floatArray)
-
-    print(arrayArgument)
-    print('your array sum is:')
-    print(arraySum)
+    file.readLinesTo2DArray('asdfasdfasdf')
