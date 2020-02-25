@@ -25,7 +25,7 @@ Round 1 (Winter 2020): Java, Python, JS
 
     1unionfind.js, 1unionfind.py, Unionfind.java
 
-    implement union-find
+    implement union-find client for next several topics
 
 2. Quick-Find
 
@@ -33,43 +33,12 @@ Round 1 (Winter 2020): Java, Python, JS
 
     implement quick-find version of union-find
 
+    find is fast, union is slow.
+
 3. Quick-Union
 
     3quickunion.js, 3quickunion.py, Quickunion.java
 
     implement quick-union version of union-find
 
-
-    
-
-Dev Notes:
-
-// JS
-
-cd algs-ds/js
-
-node Intro.js
-
-node Intro.js 1-2-3/4-5-6/7-8-9
-
-// PYTHON
-
-cd algs-ds
-
-source .env/venv/bin/activate (venv2 on ubuntu vm)
-
-cd py
-
-python Intro.py
-
-python Intro.py 1-2-3/4-5-6/7-8-9
-
-// JAVA
-
-cd algs-ds
-
-javac java1/*.java
-
-java java1/Intro.java
-
-java java1/Intro.java 1-2-3/4-5-6/7-8-9
+    union is fast, find is slow.

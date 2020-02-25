@@ -23,12 +23,14 @@
 // Union too expensive (N array accesses)
 
 package java1;
+import java.util.Arrays;
 
 public class Quickfind {
 
     public static String INPUT_FILE_PATH = "/home/ubuntu/Dev/algs-ds/input/1unionfind1.txt";
     
     private int N;
+    private int[] ids;
 
     public Quickfind() {
 
@@ -36,24 +38,26 @@ public class Quickfind {
 
     public Quickfind(int n) {
         N = n;
+        ids = new int[N];
+        for (int i = 0; i < N; i++) {
+            ids[i] = i;
+        }
     }
     
     public void union(int p, int q) {
-        // This file only implements the UF client.
+        int pid = ids[p];
+        int qid = ids[q];
+        for (int i = 0; i < N; i++) {
+            if (ids[i] == pid) {
+                ids[i] = qid;
+            }
+        }
+        System.out.println(String.format("%d <---> %d", p, q));
+        System.out.println(Arrays.toString(ids));
     }
 
     public boolean connected(int p, int q) {
-        return true;
-    }
-
-    public int find(int p) {
-        // This file only implements the UF client.
-        return 5;
-    }
-
-    public int count() {
-        // This file only implements the UF client.
-        return 10;
+        return ids[p] == ids[q];
     }
 
     private static void runClient(int[][] inputs) {
@@ -66,7 +70,6 @@ public class Quickfind {
 
             if (!uf.connected(p, q)) {
                 uf.union(p, q);
-                System.out.println(String.format("%d <---> %d", p, q));
             } else {
                 System.out.println(String.format("(%d and %d are connected.)", p, q));
             }

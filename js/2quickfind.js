@@ -27,24 +27,30 @@ var cli = require('/home/ubuntu/Dev/algs-ds/tools/cli.js');
 
 const INPUT_FILE_PATH = '/home/ubuntu/Dev/algs-ds/input/1unionfind1.txt'
 
-class unionfind { 
+class unionfind {
+
     constructor(n) {
         this.n = n;
+        this.ids = [];
+        for (let i = 0; i < n; i++) {
+            this.ids.push(i);
+        }
+
     }
     union(p, q) {
-        // This file only implements the UF client.
+        let pid = this.ids[p];
+        let qid = this.ids[q];
+        for (let i = 0; i < this.n; i++) {
+            if (this.ids[i] === pid) {
+                this.ids[i] = qid;
+            }
+        }
+        console.log(p + " <---> " + q);
+        console.log(this.ids);
     }
 
     connected(p, q) {
-        return false;
-    }
-
-    find(p) {
-        // This file only implements the UF client.
-    }
-
-    count() {
-        // This file only implements the UF client.
+        return this.ids[p] === this.ids[q];
     }
 }
 
@@ -58,7 +64,6 @@ function runClient (inputs) {
 
         if (!uf.connected(p, q)) { 
             uf.union(p, q);
-            console.log(p + " <---> " + q);
         } else {
             console.log("(" + p + " and " + q + " are connected.)");
         }
