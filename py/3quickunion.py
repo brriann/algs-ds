@@ -40,21 +40,26 @@ class unionfind:
     
     def __init__(self, n):
         self.n = n
+        self.ids = []
+        for x in range(self.n):
+            self.ids.append(x)
 
     def union(self, p, q):
-        # This file only implements the UF client.
-        asdf = 1
+        i = self.root(p)
+        j = self.root(q)
+
+        self.ids[i] = self.ids[j]
+
+        print("{} <---> {}".format(p, q))
+        print(self.ids)
 
     def connected(self, p, q):
-        return False
+        return self.root(p) == self.root(q)
 
-    def find(p):
-        # This file only implements the UF client.
-        asdf = 2
-
-    def count():
-        # This file only implements the UF client.
-        asdf = 3
+    def root(self, i):
+        while i != self.ids[i]:
+            i = self.ids[i]
+        return i
 
 
 def runClient(inputs):
@@ -69,7 +74,6 @@ def runClient(inputs):
         
         if not uf.connected(p, q):
             uf.union(p, q)
-            print("{} <---> {}".format(p, q))
         else:
             print("({} and {} are connected.)".format(p, q))
 

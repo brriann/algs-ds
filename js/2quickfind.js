@@ -35,8 +35,8 @@ class unionfind {
         for (let i = 0; i < n; i++) {
             this.ids.push(i);
         }
-
     }
+
     union(p, q) {
         let pid = this.ids[p];
         let qid = this.ids[q];

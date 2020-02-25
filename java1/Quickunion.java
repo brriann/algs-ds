@@ -25,12 +25,14 @@
 // Find too expensive (could be N array accesses)
 
 package java1;
+import java.util.Arrays;
 
 public class Quickunion {
 
     public static String INPUT_FILE_PATH = "/home/ubuntu/Dev/algs-ds/input/1unionfind1.txt";
     
     private int N;
+    private int[] ids;
 
     public Quickunion() {
 
@@ -38,24 +40,29 @@ public class Quickunion {
 
     public Quickunion(int n) {
         N = n;
+        ids = new int[N];
+        for (int i = 0; i < N; i++) {
+            ids[i] = i;
+        }
     }
     
     public void union(int p, int q) {
-        // This file only implements the UF client.
+        int i = root(p);
+        int j = root(q);
+        ids[i] = ids[j];
+        System.out.println(String.format("%d <---> %d", p, q));
+        System.out.println(Arrays.toString(ids));
     }
 
     public boolean connected(int p, int q) {
-        return true;
+        return root(p) == root(q);
     }
 
-    public int find(int p) {
-        // This file only implements the UF client.
-        return 5;
-    }
-
-    public int count() {
-        // This file only implements the UF client.
-        return 10;
+    private int root(int i) {
+        while (i != ids[i]) {
+            i = ids[i];
+        }
+        return i;
     }
 
     private static void runClient(int[][] inputs) {
@@ -68,7 +75,6 @@ public class Quickunion {
 
             if (!uf.connected(p, q)) {
                 uf.union(p, q);
-                System.out.println(String.format("%d <---> %d", p, q));
             } else {
                 System.out.println(String.format("(%d and %d are connected.)", p, q));
             }
