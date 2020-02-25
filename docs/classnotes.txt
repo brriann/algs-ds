@@ -1,0 +1,9 @@
+1. Unionfind
+
+Basic tools created for file and cli input.
+Basic client created for dynamic connectivity data structures
+
+2. Quickfind
+
+
+3. Quickunion
