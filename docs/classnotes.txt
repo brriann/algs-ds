@@ -1,9 +1,41 @@
-1. Unionfind
+00. Tools
+    file: read a multi-line file with space delimiters to a 2D array
+    cli: read CLI arg with row + cell delimiters to a 2D array
 
-Basic tools created for file and cli input.
-Basic client created for dynamic connectivity data structures
+0. Intro
+    0Intro.js, 0Intro.py, Intro.java
+    intro exercise.  test tools. 
+    Input a 2D array using cli and file tools, log to output A.) the full 2D array, B.) each row, and C.) each cell
 
-2. Quickfind
+1. Union-Find Client
+    1unionfind.js, 1unionfind.py, Unionfind.java
+    implement union-find client for next several topics
 
+2. Quick-Find
+    2quickfind.js, 2quickfind.py, Quickfind.java
+    implement quick-find version of union-find
+    (find is fast, union is slow.)
+    Union too expensive: it takes N^2 array accesses to perform N union commands on N objects (and N array accesses to union 1x)
+    Trees are flat, but too expensive to keep them flat.
 
-3. Quickunion
+3. Quick-Union
+    3quickunion.js, 3quickunion.py, Quickunion.java
+    implement quick-union version of union-find
+    (union is fast, find is slow.)
+    Find too expensive: N array accesses (worst case) to find root(i)
+    Trees can get tall, pushing find to N array accesses
+
+4. Weighted Quick-Union
+    4wqu.js, 4wqu.py, Wqu.java
+    Modify quick-union to avoid tall trees.
+    When connecting, link root of smaller tree to root of larger tree.
+    Maintain extra size[] array to count number of objects in tree rooted at i.
+    Find: takes time proportional to depth of p and q.
+    Union: takes constant time, given roots.
+    Depth of any node x is at most lgN.
+
+5. Weighted Quick-Union with Path Compression
+    5wqupc.js, 5wqupc.py, Wqupc.java
+    When computing root(p) (aka, travelling up to root(p) from p), set the id of each examined node to point to root(p).
+    2-pass method: add second loop to root() to set id[] of each examined node to the root
+    1-pass method: make every other node in path point to its grandparent (halving path length)
