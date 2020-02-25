@@ -1,5 +1,5 @@
 # CLI usage: 
-# node 1unionfind.js n/p-q/p-q/p-q/p-q
+# python 1unionfind.py n/p-q/p-q/p-q/p-q
 #
 # File usage:
 # n
