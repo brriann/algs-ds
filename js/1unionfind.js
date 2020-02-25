@@ -23,7 +23,7 @@ class unionfind {
         this.n = n;
     }
     union(p, q) {
-        // This class is simply the UF client.
+        // This file is only implementing the UF client.
     }
 
     connected(p, q) {
@@ -31,11 +31,11 @@ class unionfind {
     }
 
     find(p) {
-        // This class is simply the UF client.
+        // This file is only implementing the UF client.
     }
 
     count() {
-        // This class is simply the UF client.
+        // This file is only implementing the UF client.
     }
 }
 
