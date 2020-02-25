@@ -10,9 +10,7 @@ Round 2 (???): C++
 
 See docs/classnotes.txt for more info.
 
-00. Tools
-
-0. Intro
+0. Intro + Tools
 
 1. Union-Find Client
 
