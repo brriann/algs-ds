@@ -36,19 +36,32 @@ class unionfind {
     constructor(n) {
         this.n = n;
         this.ids = [];
+        this.size = [];
         for (let i = 0; i < n; i++) {
             this.ids.push(i);
+            this.size.push(1);
         }
     }
 
     union(p, q) {
         let i = this.root(p);
         let j = this.root(q);
-        
-        this.ids[i] = this.ids[j];
+
+        if (i === j) {
+            return;
+        }
+
+        if (this.size[i] < this.size[j]) {
+            this.ids[i] = j;
+            this.size[j] += this.size[i];
+        } else {
+            this.ids[j] = i;
+            this.size[i] += this.size[j];
+        }
         
         console.log(p + " <---> " + q);
         console.log(this.ids);
+        console.log(this.size);
     }
 
     connected(p, q) {

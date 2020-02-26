@@ -43,17 +43,28 @@ class unionfind:
     def __init__(self, n):
         self.n = n
         self.ids = []
+        self.size = []
         for x in range(self.n):
             self.ids.append(x)
+            self.size.append(1)
 
     def union(self, p, q):
         i = self.root(p)
         j = self.root(q)
 
-        self.ids[i] = self.ids[j]
+        if (i == j):
+            return
+
+        if (self.size[i] < self.size[j]):
+            self.ids[i] = j
+            self.size[j] += self.size[i]
+        else:
+            self.ids[j] = i
+            self.size[i] += self.size[j]
 
         print("{} <---> {}".format(p, q))
         print(self.ids)
+        print(self.size)
 
     def connected(self, p, q):
         return self.root(p) == self.root(q)

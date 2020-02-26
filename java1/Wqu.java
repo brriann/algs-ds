@@ -35,6 +35,7 @@ public class Wqu {
     
     private int N;
     private int[] ids;
+    private int[] size;
 
     public Wqu() {
 
@@ -43,17 +44,34 @@ public class Wqu {
     public Wqu(int n) {
         N = n;
         ids = new int[N];
+        size = new int[N];
+
         for (int i = 0; i < N; i++) {
             ids[i] = i;
+            size[i] = 1;
         }
     }
     
     public void union(int p, int q) {
         int i = root(p);
         int j = root(q);
-        ids[i] = ids[j];
+
+        if (i == j) {
+            return;
+        }
+
+        if (size[i] < size[j]) {
+            ids[i] = j;
+            size[j] += size[i];
+        } else {
+            ids[j] = i;
+            size[i] += size[j];
+        }
+
+
         System.out.println(String.format("%d <---> %d", p, q));
         System.out.println(Arrays.toString(ids));
+        System.out.println(Arrays.toString(size));
     }
 
     public boolean connected(int p, int q) {
