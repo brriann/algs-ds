@@ -6,7 +6,6 @@ algs4.cs.princeton.edu
 
 
 Round 1 (Winter-Spring 2020): Java, Python, JS
-Round 2 (???): C++
 
 See docs/classnotes.txt for more info.
 
