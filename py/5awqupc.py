@@ -24,6 +24,8 @@
 #     set the id of smaller tree's root to the id of larger tree's root
 #     and update the size[] array
 #
+# 2-pass Path Compression: add 2nd loop to root(), to set id[] of each examined node to the root
+#
 # By adding smaller trees to larger trees, Tree height grows slower (and is limited to at most lgN)
 
 import sys, importlib.util

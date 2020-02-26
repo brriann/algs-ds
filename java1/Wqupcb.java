@@ -24,12 +24,15 @@
 //     set the id of smaller tree's root to the id of larger tree's root
 //     and update the size[] array
 //
+// 1-pass Path Compression: while traversing in root(), make every other node point to its grandparent (halving path length)
+//
 // By adding smaller trees to larger trees, Tree height grows slower (and is limited to at most lgN)
 
 package java1;
 import java.util.Arrays;
+import java.util.ArrayList;
 
-public class Wqu {
+public class Wqupcb {
 
     public static String INPUT_FILE_PATH = "/home/ubuntu/Dev/algs-ds/input/1unionfind1.txt";
     
@@ -37,11 +40,11 @@ public class Wqu {
     private int[] ids;
     private int[] size;
 
-    public Wqu() {
+    public Wqupcb() {
 
     }
 
-    public Wqu(int n) {
+    public Wqupcb(int n) {
         N = n;
         ids = new int[N];
         size = new int[N];
@@ -53,10 +56,12 @@ public class Wqu {
     }
     
     public void union(int p, int q) {
+        System.out.println(String.format("UNION %d and %d", p, q));
         int i = root(p);
         int j = root(q);
 
         if (i == j) {
+            System.out.println(String.format("(%d connects to %d)", p, q));
             return;
         }
 
@@ -75,19 +80,26 @@ public class Wqu {
     }
 
     public boolean connected(int p, int q) {
+        System.out.println(String.format("CONNECTED %d and %d", p, q));
         return root(p) == root(q);
     }
 
     private int root(int i) {
+        System.out.println(String.format("ROOT %d", i));
+
         while (i != ids[i]) {
+            System.out.println(String.format("set %d root from %d to %d", i, ids[i], ids[ids[i]]));
+            ids[i] = ids[ids[i]];
+
             i = ids[i];
         }
+
         return i;
     }
 
     private static void runClient(int[][] inputs) {
         int n = inputs[0][0];
-        Wqu uf = new Wqu(n);
+        Wqupcb uf = new Wqupcb(n);
 
         for (int i = 1; i < inputs.length; i++) {
             int p = inputs[i][0];

@@ -24,12 +24,15 @@
 //     set the id of smaller tree's root to the id of larger tree's root
 //     and update the size[] array
 //
+// 2-pass Path Compression: add 2nd loop to root(), to set id[] of each examined node to the root
+//
 // By adding smaller trees to larger trees, Tree height grows slower (and is limited to at most lgN)
 
 package java1;
 import java.util.Arrays;
+import java.util.ArrayList;
 
-public class Wqu {
+public class Wqupca {
 
     public static String INPUT_FILE_PATH = "/home/ubuntu/Dev/algs-ds/input/1unionfind1.txt";
     
@@ -37,11 +40,11 @@ public class Wqu {
     private int[] ids;
     private int[] size;
 
-    public Wqu() {
+    public Wqupca() {
 
     }
 
-    public Wqu(int n) {
+    public Wqupca(int n) {
         N = n;
         ids = new int[N];
         size = new int[N];
@@ -53,10 +56,12 @@ public class Wqu {
     }
     
     public void union(int p, int q) {
+        System.out.println(String.format("UNION %d and %d", p, q));
         int i = root(p);
         int j = root(q);
 
         if (i == j) {
+            System.out.println(String.format("(%d connects to %d)", p, q));
             return;
         }
 
@@ -75,19 +80,48 @@ public class Wqu {
     }
 
     public boolean connected(int p, int q) {
+        System.out.println(String.format("CONNECTED %d and %d", p, q));
         return root(p) == root(q);
     }
 
     private int root(int i) {
+        System.out.println(String.format("ROOT %d", i));
+        ArrayList<Integer> nodesToSet = new ArrayList<Integer>();
+        int nodesThatWereSet = 0;
+        int originalChild = i;
+
+
         while (i != ids[i]) {
+            nodesToSet.add(i);
             i = ids[i];
         }
+
+        if (nodesToSet.size() > 0) {
+            System.out.println(String.format("examining %d, set nodes to root %d", originalChild, i));
+            System.out.println(Arrays.toString(nodesToSet.toArray()));
+        }
+
+        // 2nd pass to set examined nodes to root
+        for (Integer j : nodesToSet) {
+            if (ids[j] != i) {
+                ids[j] = i;
+                size[i] += size[j];
+                nodesThatWereSet++;
+            }
+        }
+
+        if (nodesToSet.size() > 0 && nodesThatWereSet > 0) {
+            System.out.println(String.format("(%d examined nodes set.)", nodesThatWereSet));
+            System.out.println(Arrays.toString(ids));
+            System.out.println(Arrays.toString(size));
+        }
+
         return i;
     }
 
     private static void runClient(int[][] inputs) {
         int n = inputs[0][0];
-        Wqu uf = new Wqu(n);
+        Wqupca uf = new Wqupca(n);
 
         for (int i = 1; i < inputs.length; i++) {
             int p = inputs[i][0];
