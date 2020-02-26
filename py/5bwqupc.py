@@ -49,10 +49,12 @@ class unionfind:
             self.size.append(1)
 
     def union(self, p, q):
+        print("UNION {} and {}".format(p, q))
         i = self.root(p)
         j = self.root(q)
 
         if (i == j):
+            print("({} connects to {})".format(p, q))
             return
 
         if (self.size[i] < self.size[j]):
@@ -67,11 +69,18 @@ class unionfind:
         print(self.size)
 
     def connected(self, p, q):
+        print("CONNECTED {} and {}".format(p, q))
         return self.root(p) == self.root(q)
 
     def root(self, i):
+        print("ROOT {}".format(i))
+
         while i != self.ids[i]:
+            print("set {} root from {} to {}".format(i, self.ids[i], self.ids[self.ids[i]]))
+            self.ids[i] = self.ids[self.ids[i]]
+
             i = self.ids[i]
+
         return i
 
 
