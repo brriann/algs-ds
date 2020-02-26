@@ -24,3 +24,15 @@ See docs/classnotes.txt for more info.
 5a. 2-pass path compression
 
 5b. 1-pass path compression
+
+6. Binary Search
+
+7. Insertion Sort
+
+8. Three-Sum (given N ints, how many triples sum to zero?)
+
+8a. brute force, N^3
+
+8b. N^2logN with insertion sort and binary search
+
+
