@@ -20,3 +20,7 @@ See docs/classnotes.txt for more info.
 4. Weighted Quick-Union
     
 5. Weighted Quick-Union with Path Compression
+
+5a. 2-pass path compression
+
+5b. 1-pass path compression

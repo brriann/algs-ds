@@ -35,7 +35,8 @@
     Depth of any node x is at most lgN.
 
 5. Weighted Quick-Union with Path Compression
-    5wqupc.js, 5wqupc.py, Wqupc.java
     When computing root(p) (aka, travelling up to root(p) from p), set the id of each examined node to point to root(p).
     2-pass method: add second loop to root() to set id[] of each examined node to the root
+    5awqupc.js, 5awqupc.py, Wqupca.java
     1-pass method: make every other node in path point to its grandparent (halving path length)
+    5bwqupc.js, 5bwqupc.py, Wqupcb.java
