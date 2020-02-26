@@ -21,9 +21,9 @@ See docs/classnotes.txt for more info.
     
 5. Weighted Quick-Union with Path Compression
 
-5a. 2-pass path compression
+    5a. 2-pass path compression
 
-5b. 1-pass path compression
+    5b. 1-pass path compression
 
 6. Binary Search
 
@@ -31,8 +31,8 @@ See docs/classnotes.txt for more info.
 
 8. Three-Sum (given N ints, how many triples sum to zero?)
 
-8a. brute force, N^3
+    8a. brute force, N^3
 
-8b. N^2logN with insertion sort and binary search
+    8b. N^2logN with insertion sort and binary search
 
 
