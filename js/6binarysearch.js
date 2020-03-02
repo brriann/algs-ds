@@ -24,13 +24,31 @@ class binarysearch {
         this.list = list;
     }
 
+    search(low, middle, high) {
+        while (this.list[middle] != this.target) {
+            // TODO: continue here for JS
+        }
+    }
+
 }
 
 function runClient (inputs) {
-    let target = inputs[0][0];
-    let list = inputs[1];
-    let bs = new binarysearch(target, list);
+    let targetin = inputs[0][0];
+    let listin = inputs[1];
+    let bs = new binarysearch(targetin, listin);
 
+    let initialLow = 0;
+    let initialMiddle = parseInt(listin.length / 2);
+    initialHigh = (listin.length - 1);
+
+    console.log('initial lo mi hi: ' + initialLow + ' ' + initialMiddle + ' ' + initialHigh);
+    let targetIndex = bs.search(initialLow, initialMiddle, initialHigh)
+
+    if (targetIndex < 0) {
+        console.log('*** TARGET NOT IN LIST ***')
+    } else {
+        console.log('*** TARGET ' + targetin + ' FOUND AT INDEX ' + targetIndex + ' IN LIST  ' + listin)
+    }
 }
 
 //

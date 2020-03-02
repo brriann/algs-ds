@@ -13,7 +13,7 @@
  # Return -1 if not present
  #
 
- import sys, importlib.util
+import sys, importlib.util
 
 INPUT_FILE_PATH = '/home/ubuntu/Dev/algs-ds/input/6binarysearch1.txt'
 
@@ -27,9 +27,44 @@ specCli.loader.exec_module(cli)
 
 class binarysearch:
     
-    def __init__(self, target, list:
+    def __init__(self, target, listToSearch):
         self.target = target
-        self.list = list
+        self.listToSearch = listToSearch
+        self.length = len(listToSearch)
+        print('target')
+        print(self.target)
+        print('listToSearch')
+        print(self.listToSearch)
+        print('length')
+        print(self.length)
+
+    def search(self, low, middle, high):
+        lo = low
+        mid = middle
+        hi = high
+        nextlo = lo
+        nextmid = mid
+        nexthi = hi
+        foundIndex = -1
+        print('SEARCHtop lo/mid/hi: {}/{}/{}'.format(low, middle, high))
+        
+        while (self.listToSearch[mid] != self.target):
+            if (lo >= mid or hi <= mid):
+                print('A')
+                return foundIndex    
+            elif (self.listToSearch[mid] > self.target):
+                print('B')
+                nexthi = mid
+                nextmid = ((hi - lo) // 2) + 1
+            elif (self.listToSearch[mid] < self.target):
+                print('C')
+                nextlo = mid
+                nextmid = ((hi - lo) // 2) + 1
+            print('SEARCHbottom lo/mid/hi: {}/{}/{}'.format(low, middle, high))
+            self.search(nextlo, nextmid, nexthi)
+
+        foundIndex = self.listToSearch.index(mid)
+        return foundIndex
 
 
 def runClient(inputs):
@@ -37,7 +72,19 @@ def runClient(inputs):
     listin = inputs[1]
 
     bs = binarysearch(targetin, listin)
-    
+
+    initialLow = 0
+    initialMiddle = len(listin) // 2
+    initialHigh = len(listin) - 1
+
+    print('initial lo/mid/hi: {}/{}/{}'.format(initialLow, initialMiddle, initialHigh))
+    targetIndex = bs.search(initialLow, initialMiddle, initialHigh)
+
+    # targetIndex = -1 for Not Found
+    if (targetIndex < 0):
+        print('*** TARGET NOT IN LIST ***')
+    else:
+        print("*** TARGET {} FOUND AT INDEX {} IN LIST  {}".format(targetin, targetIndex, listin))
 
 ##
 ## CLIENT
