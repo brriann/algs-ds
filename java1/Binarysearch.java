@@ -17,10 +17,10 @@ package java1;
 
 public class Binarysearch {
 
-    public static String INPUT_FILE_PATH = "/home/ubuntu/Dev/algsds/input/6binarysearch1.txt";
+    public static String INPUT_FILE_PATH = "/home/ubuntu/Dev/algs-ds/input/6binarysearch1.txt";
     
     private int Target;
-    private int[] List;
+    private int[] ListToSearch;
     
     public Binarysearch() {
 
@@ -28,13 +28,50 @@ public class Binarysearch {
 
     public Binarysearch(int target, int[] list) {
         Target = target;
-        List = list;
+        ListToSearch = list;
+    }
+
+    public int search(int low, int high) {
+        int foundIndex = -1;
+        boolean found = false;
+        int middle;
+
+        while (low <= high && !found) {
+            middle = low + ((high - low)) / 2;
+            System.out.println(String.format("SEARCH lo hi: %d %d", low, high));
+            System.out.println(String.format("cald\'d mid': %d", middle));
+            if (ListToSearch[middle] > Target) {
+                System.out.println("Go lower");
+                high = middle - 1;
+            } else if (ListToSearch[middle] < Target) {
+                System.out.println("Go higher");
+                low = middle + 1;
+            } else {
+                foundIndex = middle;
+                found = true;
+            }
+        }
+        return foundIndex;
     }
 
     private static void runClient(int[][] inputs) {
         int target = inputs[0][0];
         int[] list = inputs[1];
+
         Binarysearch bs = new Binarysearch(target, list);
+
+        int initialLow = 0;
+        int initialHigh = (list.length - 1);
+
+        System.out.println(String.format("Initial lo hi: %d %d", initialLow, initialHigh));
+        int targetIndex = bs.search(initialLow, initialHigh);
+
+        // targetIndex = -1 for Not Found
+        if (targetIndex < 0) {
+            System.out.println("*** TARGET NOT IN LIST ***");
+        } else {
+            System.out.println(String.format("*** TARGET %d FOUND AT INDEX %d", target, targetIndex));
+        }
     }
 
     //

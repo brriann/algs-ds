@@ -38,32 +38,23 @@ class binarysearch:
         print('length')
         print(self.length)
 
-    def search(self, low, middle, high):
-        lo = low
-        mid = middle
-        hi = high
-        nextlo = lo
-        nextmid = mid
-        nexthi = hi
+    def search(self, low, high):
         foundIndex = -1
-        print('SEARCHtop lo/mid/hi: {}/{}/{}'.format(low, middle, high))
+        found = False
         
-        while (self.listToSearch[mid] != self.target):
-            if (lo >= mid or hi <= mid):
-                print('A')
-                return foundIndex    
-            elif (self.listToSearch[mid] > self.target):
-                print('B')
-                nexthi = mid
-                nextmid = ((hi - lo) // 2) + 1
-            elif (self.listToSearch[mid] < self.target):
-                print('C')
-                nextlo = mid
-                nextmid = ((hi - lo) // 2) + 1
-            print('SEARCHbottom lo/mid/hi: {}/{}/{}'.format(low, middle, high))
-            self.search(nextlo, nextmid, nexthi)
-
-        foundIndex = self.listToSearch.index(mid)
+        while (low <= high and not found):
+            middle = low + ((high - low) // 2)
+            print('SEARCH lo/hi: {}/{}'.format(low, high))
+            print('calc\'d mid: {}'.format(middle))
+            if (self.listToSearch[middle] > self.target):
+                print('Go lower')
+                high = middle - 1
+            elif (self.listToSearch[middle] < self.target):
+                print('Go higher')
+                low = middle + 1
+            else:
+                foundIndex = middle
+                found = True
         return foundIndex
 
 
@@ -74,17 +65,17 @@ def runClient(inputs):
     bs = binarysearch(targetin, listin)
 
     initialLow = 0
-    initialMiddle = len(listin) // 2
     initialHigh = len(listin) - 1
 
-    print('initial lo/mid/hi: {}/{}/{}'.format(initialLow, initialMiddle, initialHigh))
-    targetIndex = bs.search(initialLow, initialMiddle, initialHigh)
+    print('initial lo/hi: {}/{}'.format(initialLow, initialHigh))
+    targetIndex = bs.search(initialLow, initialHigh)
 
     # targetIndex = -1 for Not Found
     if (targetIndex < 0):
         print('*** TARGET NOT IN LIST ***')
     else:
-        print("*** TARGET {} FOUND AT INDEX {} IN LIST  {}".format(targetin, targetIndex, listin))
+        print("*** TARGET {} FOUND AT INDEX {} IN LIST:".format(targetin, targetIndex))
+        print(listin)
 
 ##
 ## CLIENT

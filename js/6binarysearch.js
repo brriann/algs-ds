@@ -24,10 +24,27 @@ class binarysearch {
         this.list = list;
     }
 
-    search(low, middle, high) {
-        while (this.list[middle] != this.target) {
-            // TODO: continue here for JS
+    search(low, high) {
+        let foundIndex = -1;
+        let found = false;
+
+        while (low <= high && !found) {
+            let middle = parseInt(low + ((high-low) / 2));
+            console.log('SEARCH lo hi: ' + low + ' ' + high);
+            console.log('cald\'d mid: ' + middle);
+
+            if (this.list[middle] > this.target) {
+                console.log('go lower');
+                high = middle - 1;
+            } else if (this.list[middle] < this.target) {
+                console.log('go higher');
+                low = middle + 1;
+            } else  {
+                foundIndex = middle;
+                found = true;
+            }
         }
+        return foundIndex;
     }
 
 }
@@ -35,15 +52,16 @@ class binarysearch {
 function runClient (inputs) {
     let targetin = inputs[0][0];
     let listin = inputs[1];
+
     let bs = new binarysearch(targetin, listin);
 
     let initialLow = 0;
-    let initialMiddle = parseInt(listin.length / 2);
-    initialHigh = (listin.length - 1);
+    let initialHigh = (listin.length - 1);
 
-    console.log('initial lo mi hi: ' + initialLow + ' ' + initialMiddle + ' ' + initialHigh);
-    let targetIndex = bs.search(initialLow, initialMiddle, initialHigh)
+    console.log('initial lo hi: ' + initialLow + ' ' + initialHigh);
+    let targetIndex = bs.search(initialLow, initialHigh)
 
+    // targetIndex = -1 for Not Found
     if (targetIndex < 0) {
         console.log('*** TARGET NOT IN LIST ***')
     } else {
