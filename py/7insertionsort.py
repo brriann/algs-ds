@@ -28,20 +28,28 @@ class insertionsort:
     def __init__(self):
         self.counter = 0
 
-    def search(self, unsortedList):
-        return unsortedList
+    def sort(self, listA):
+        for i in range(len(listA)):
+            j = i - 1
+            temp = listA[i]
+            while j >=0 and listA[j] > temp:
+                listA[j + 1] = listA[j]
+                j -= 1
+            listA[j + 1] = temp
+        return listA
 
 
 def runClient(inputs):
-    unsortedList = inputs[0]
-
-    is = insertionsort(unsortedList)
-    sortedList = is.sort
+    listA = inputs[0]
 
     print('Unsorted list: ')
-    print(unsortedList)
+    print(listA)
+
+    iss = insertionsort()
+    iss.sort(listA)
+    
     print('Sorted list: ')
-    print(sortedList)
+    print(listA)
 
 ##
 ## CLIENT

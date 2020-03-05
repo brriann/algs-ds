@@ -13,6 +13,8 @@
 
 package java1;
 
+import java.util.Arrays;
+
 public class Insertionsort {
 
     public static String INPUT_FILE_PATH = "/home/ubuntu/Dev/algs-ds/input/7insertionsort1.txt";
@@ -21,22 +23,29 @@ public class Insertionsort {
 
     }
 
-    public int[] sort(int[] unsortedList) {
-        return unsortedList;
+    public void sort(int[] list) {
+        for (int i = 1; i < list.length; i++) {
+            int j = i - 1;
+            int temp = list[i];
+            while (j >= 0 && list[j] > temp) {
+                list[j + 1] = list[j];
+                j -= 1;
+            }
+            list[j + 1] = temp;
+        }
     }
 
     private static void runClient(int[][] inputs) {
-        int[] unsortedList = inputs[0];
-
-        Insertionsort is = new Insertionsort();
-
-        int[] sortedList = is.sort(unsortedList);
+        int[] list = inputs[0];
 
         System.out.println("Unsorted list:");
-        System.out.println(unsortedList);
+        System.out.println(Arrays.toString(list));
+
+        Insertionsort is = new Insertionsort();
+        is.sort(list);
 
         System.out.println("Sorted list:");
-        System.out.println(sortedList);
+        System.out.println(Arrays.toString(list));
     }
 
     //

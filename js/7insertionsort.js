@@ -21,24 +21,30 @@ class insertionsort {
         this.list = list;
     }
 
-    sort(unsortedList) {
-        return unsortedList;
+    sort(list) {
+        for (let i = 1; i < list.length; i++) {
+            let j = i - 1;
+            let temp = list[i];
+            while (j >= 0 && list[j] > temp) {
+                list[j + 1] = list[j]
+                j -= 1;
+            }
+            list[j + 1] = temp
+        }
     }
-
 }
 
 function runClient (inputs) {
-    let unsortedList = inputs[0];
+    let list = inputs[0];
+    
+    console.log("Unsorted list:");
+    console.log(list);
 
     let is = new insertionsort();
-
-    let sortedList = is.sort(unsortedList);
-
-    console.log("Unsorted list:");
-    console.log(unsortedList);
+    is.sort(list);
 
     console.log("Sorted list:");
-    console.log(sortedList);
+    console.log(list);
 }
 
 //
