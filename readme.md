@@ -1,6 +1,6 @@
 
-This is a repo in for implementing algs + data structures
-taught in Princeton's A+DS course. (Sedgewick) (And beyond.)
+This is a repo in for implementing algorithms and data structures
+taught in Princeton's A+DS course. (Sedgewick)
 
 algs4.cs.princeton.edu
 
