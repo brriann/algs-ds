@@ -11,17 +11,17 @@
 # Return sorted list
 #
 
-import sys, importlib.util
+# import sys, importlib.util
 
-INPUT_FILE_PATH = '/home/ubuntu/Dev/algs-ds/input/7insertionsort1.txt'
+# INPUT_FILE_PATH = '/home/ubuntu/Dev/algs-ds/input/7insertionsort1.txt'
 
-specFile = importlib.util.spec_from_file_location('file', '/home/ubuntu/Dev/algs-ds/tools/file.py')
-file = importlib.util.module_from_spec(specFile)
-specFile.loader.exec_module(file)
+# specFile = importlib.util.spec_from_file_location('file', '/home/ubuntu/Dev/algs-ds/tools/file.py')
+# file = importlib.util.module_from_spec(specFile)
+# specFile.loader.exec_module(file)
 
-specCli = importlib.util.spec_from_file_location('cli', '/home/ubuntu/Dev/algs-ds/tools/cli.py')
-cli = importlib.util.module_from_spec(specCli)
-specCli.loader.exec_module(cli)
+# specCli = importlib.util.spec_from_file_location('cli', '/home/ubuntu/Dev/algs-ds/tools/cli.py')
+# cli = importlib.util.module_from_spec(specCli)
+# specCli.loader.exec_module(cli)
 
 class insertionsort:
     
@@ -36,26 +36,28 @@ class insertionsort:
                 listA[j + 1] = listA[j]
                 j -= 1
             listA[j + 1] = temp
-        return listA
+        #return listA
 
 
-def runClient(inputs):
-    listA = inputs[0]
-
-    print('Unsorted list: ')
-    print(listA)
-
-    iss = insertionsort()
-    iss.sort(listA)
-    
-    print('Sorted list: ')
-    print(listA)
 
 ##
 ## CLIENT
 ##
 
-if len(sys.argv) > 1:
-    runClient(cli.readArgTo2DArray(sys.argv[1]))
-else:
-    runClient(file.readLinesTo2DArray(INPUT_FILE_PATH))
+# def runClient(inputs):
+#     listA = inputs[0]
+
+#     print('Unsorted list: ')
+#     print(listA)
+
+#     iss = insertionsort()
+#     iss.sort(listA)
+    
+#     print('Sorted list: ')
+#     print(listA)
+
+
+# if len(sys.argv) > 1:
+#     runClient(cli.readArgTo2DArray(sys.argv[1]))
+# else:
+#     runClient(file.readLinesTo2DArray(INPUT_FILE_PATH))

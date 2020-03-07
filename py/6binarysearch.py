@@ -13,75 +13,74 @@
  # Return -1 if not present
  #
 
-import sys, importlib.util
+# import sys, importlib.util
 
-INPUT_FILE_PATH = '/home/ubuntu/Dev/algs-ds/input/6binarysearch1.txt'
+# INPUT_FILE_PATH = '/home/ubuntu/Dev/algs-ds/input/6binarysearch1.txt'
 
-specFile = importlib.util.spec_from_file_location('file', '/home/ubuntu/Dev/algs-ds/tools/file.py')
-file = importlib.util.module_from_spec(specFile)
-specFile.loader.exec_module(file)
+# specFile = importlib.util.spec_from_file_location('file', '/home/ubuntu/Dev/algs-ds/tools/file.py')
+# file = importlib.util.module_from_spec(specFile)
+# specFile.loader.exec_module(file)
 
-specCli = importlib.util.spec_from_file_location('cli', '/home/ubuntu/Dev/algs-ds/tools/cli.py')
-cli = importlib.util.module_from_spec(specCli)
-specCli.loader.exec_module(cli)
+# specCli = importlib.util.spec_from_file_location('cli', '/home/ubuntu/Dev/algs-ds/tools/cli.py')
+# cli = importlib.util.module_from_spec(specCli)
+# specCli.loader.exec_module(cli)
 
 class binarysearch:
     
-    def __init__(self, target, listToSearch):
-        self.target = target
-        self.listToSearch = listToSearch
-        self.length = len(listToSearch)
-        print('target')
-        print(self.target)
-        print('listToSearch')
-        print(self.listToSearch)
-        print('length')
-        print(self.length)
+    # def __init__(self, target, listToSearch):
+    #     self.target = target
+    #     self.listToSearch = listToSearch
+    #     self.length = len(listToSearch)
+        # print('target')
+        # print(self.target)
+        # print('listToSearch')
+        # print(self.listToSearch)
+        # print('length')
+        # print(self.length)
 
-    def search(self, low, high):
+    def search(self, low, high, target, listToSearch):
         foundIndex = -1
         found = False
         
         while (low <= high and not found):
             middle = low + ((high - low) // 2)
-            print('SEARCH lo/hi: {}/{}'.format(low, high))
-            print('calc\'d mid: {}'.format(middle))
-            if (self.listToSearch[middle] > self.target):
-                print('Go lower')
+            #print('SEARCH lo/hi: {}/{}'.format(low, high))
+            #print('calc\'d mid: {}'.format(middle))
+            if (listToSearch[middle] > target):
+                #print('Go lower')
                 high = middle - 1
-            elif (self.listToSearch[middle] < self.target):
-                print('Go higher')
+            elif (listToSearch[middle] < target):
+                #print('Go higher')
                 low = middle + 1
             else:
                 foundIndex = middle
                 found = True
         return foundIndex
 
-
-def runClient(inputs):
-    targetin = inputs[0][0]
-    listin = inputs[1]
-
-    bs = binarysearch(targetin, listin)
-
-    initialLow = 0
-    initialHigh = len(listin) - 1
-
-    print('initial lo/hi: {}/{}'.format(initialLow, initialHigh))
-    targetIndex = bs.search(initialLow, initialHigh)
-
-    # targetIndex = -1 for Not Found
-    if (targetIndex < 0):
-        print('*** TARGET NOT IN LIST ***')
-    else:
-        print("*** TARGET {} FOUND AT INDEX {} IN LIST:".format(targetin, targetIndex))
-        print(listin)
-
 ##
 ## CLIENT
 ##
 
-if len(sys.argv) > 1:
-    runClient(cli.readArgTo2DArray(sys.argv[1]))
-else:
-    runClient(file.readLinesTo2DArray(INPUT_FILE_PATH))
+# def runClient(inputs):
+#     targetin = inputs[0][0]
+#     listin = inputs[1]
+
+#     bs = binarysearch(targetin, listin)
+
+#     initialLow = 0
+#     initialHigh = len(listin) - 1
+
+#     print('initial lo/hi: {}/{}'.format(initialLow, initialHigh))
+#     targetIndex = bs.search(initialLow, initialHigh)
+
+#     # targetIndex = -1 for Not Found
+#     if (targetIndex < 0):
+#         print('*** TARGET NOT IN LIST ***')
+#     else:
+#         print("*** TARGET {} FOUND AT INDEX {} IN LIST:".format(targetin, targetIndex))
+#         print(listin)
+
+# if len(sys.argv) > 1:
+#     runClient(cli.readArgTo2DArray(sys.argv[1]))
+# else:
+#     runClient(file.readLinesTo2DArray(INPUT_FILE_PATH))

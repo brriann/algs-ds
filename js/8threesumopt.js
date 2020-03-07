@@ -20,7 +20,6 @@ const INPUT_FILE_PATH = '/home/ubuntu/Dev/algs-ds/input/8threesum3.txt'
 
 class threesumopt { 
     constructor(list) {
-        this.list = list;
         this.iSort = new insertionsort();
         this.bSearch = new binarysearch();
 
@@ -50,7 +49,7 @@ class threesumopt {
                 if (indexIj >= 0 && list[i] < list[j] && list[j] < ij) {
                     console.log('3-SUM: ' + list[i] + ' ' + list[j] + ' ' + ij); // ij = list[indexIj] = list[i] + list[j]
                     count += 1;
-                    this.foundTriples.push([list[i], list[j], list[indexIj]])
+                    this.foundTriples.push([list[i], list[j], ij])
                 }
             }
         }

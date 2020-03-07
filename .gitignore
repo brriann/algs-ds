@@ -4,3 +4,4 @@
 .DS_Store
 *.class
 tools/__pycache__
+*.pyc

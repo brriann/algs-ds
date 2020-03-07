@@ -13,17 +13,17 @@
 
 package java1;
 
-import java.util.Arrays;
+//import java.util.Arrays;
 
 public class Insertionsort {
 
     public static String INPUT_FILE_PATH = "/home/ubuntu/Dev/algs-ds/input/7insertionsort1.txt";
 
-    public Insertionsort() {
+    // public Insertionsort() {
 
-    }
+    // }
 
-    public void sort(int[] list) {
+    public static void sort(int[] list) {
         for (int i = 1; i < list.length; i++) {
             int j = i - 1;
             int temp = list[i];
@@ -34,29 +34,29 @@ public class Insertionsort {
             list[j + 1] = temp;
         }
     }
-
-    private static void runClient(int[][] inputs) {
-        int[] list = inputs[0];
-
-        System.out.println("Unsorted list:");
-        System.out.println(Arrays.toString(list));
-
-        Insertionsort is = new Insertionsort();
-        is.sort(list);
-
-        System.out.println("Sorted list:");
-        System.out.println(Arrays.toString(list));
-    }
-
+    
     //
     // CLIENT
     //
+
+    // private static void runClient(int[][] inputs) {
+    //     int[] list = inputs[0];
+
+    //     System.out.println("Unsorted list:");
+    //     System.out.println(Arrays.toString(list));
+
+    //     Insertionsort is = new Insertionsort();
+    //     is.sort(list);
+
+    //     System.out.println("Sorted list:");
+    //     System.out.println(Arrays.toString(list));
+    // }
     
-    public static void main(String[] args) {
-        if (args.length > 0) {
-            runClient(CliReader.readArgTo2DArray(args[0]));
-        } else {
-            runClient(FileReader.readLinesTo2DArray(INPUT_FILE_PATH));
-        }
-    }
+    // public static void main(String[] args) {
+    //     if (args.length > 0) {
+    //         runClient(CliReader.readArgTo2DArray(args[0]));
+    //     } else {
+    //         runClient(FileReader.readLinesTo2DArray(INPUT_FILE_PATH));
+    //     }
+    // }
 }
