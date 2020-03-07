@@ -34,30 +34,34 @@ class insertionsort {
     }
 }
 
-function runClient (inputs) {
-    let list = inputs[0];
-    
-    console.log("Unsorted list:");
-    console.log(list);
 
-    let is = new insertionsort();
-    is.sort(list);
-
-    console.log("Sorted list:");
-    console.log(list);
-}
 
 //
 // CLIENT
 //
 
-if (process.argv.length > 2) {
-    cli.readArgTo2DArray(process.argv[2], function (cliInput) {
-         runClient(cliInput);
-    });
+module.exports = insertionsort
+
+// function runClient (inputs) {
+//     let list = inputs[0];
+    
+//     console.log("Unsorted list:");
+//     console.log(list);
+
+//     let is = new insertionsort();
+//     is.sort(list);
+
+//     console.log("Sorted list:");
+//     console.log(list);
+// }
+
+// if (process.argv.length > 2) {
+//     cli.readArgTo2DArray(process.argv[2], function (cliInput) {
+//          runClient(cliInput);
+//     });
  
- } else {
-     file.readLinesTo2DArray(INPUT_FILE_PATH, function (fileInput) {
-         runClient(fileInput);
-     });
- }
+//  } else {
+//      file.readLinesTo2DArray(INPUT_FILE_PATH, function (fileInput) {
+//          runClient(fileInput);
+//      });
+//  }

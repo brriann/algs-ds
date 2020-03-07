@@ -19,12 +19,17 @@ var cli = require('/home/ubuntu/Dev/algs-ds/tools/cli.js');
 const INPUT_FILE_PATH = '/home/ubuntu/Dev/algs-ds/input/6binarysearch1.txt'
 
 class binarysearch { 
-    constructor(target, list) {
-        this.target = target;
-        this.list = list;
+
+    constructor() {
+
     }
 
-    search(low, high) {
+    // constructor(target, list) {
+    //     this.target = target;
+    //     this.list = list;
+    // }
+
+    search(low, high, target, list) {
         let foundIndex = -1;
         let found = false;
 
@@ -33,10 +38,10 @@ class binarysearch {
             console.log('SEARCH lo hi: ' + low + ' ' + high);
             console.log('cald\'d mid: ' + middle);
 
-            if (this.list[middle] > this.target) {
+            if (list[middle] > target) {
                 console.log('go lower');
                 high = middle - 1;
-            } else if (this.list[middle] < this.target) {
+            } else if (list[middle] < target) {
                 console.log('go higher');
                 low = middle + 1;
             } else  {
@@ -49,37 +54,41 @@ class binarysearch {
 
 }
 
-function runClient (inputs) {
-    let targetin = inputs[0][0];
-    let listin = inputs[1];
+module.exports = binarysearch
 
-    let bs = new binarysearch(targetin, listin);
-
-    let initialLow = 0;
-    let initialHigh = (listin.length - 1);
-
-    console.log('initial lo hi: ' + initialLow + ' ' + initialHigh);
-    let targetIndex = bs.search(initialLow, initialHigh)
-
-    // targetIndex = -1 for Not Found
-    if (targetIndex < 0) {
-        console.log('*** TARGET NOT IN LIST ***')
-    } else {
-        console.log('*** TARGET ' + targetin + ' FOUND AT INDEX ' + targetIndex + ' IN LIST  ' + listin)
-    }
-}
 
 //
 // CLIENT
 //
 
-if (process.argv.length > 2) {
-    cli.readArgTo2DArray(process.argv[2], function (cliInput) {
-         runClient(cliInput);
-    });
+
+// function runClient (inputs) {
+//     let targetin = inputs[0][0];
+//     let listin = inputs[1];
+
+//     let bs = new binarysearch(targetin, listin);
+
+//     let initialLow = 0;
+//     let initialHigh = (listin.length - 1);
+
+//     console.log('initial lo hi: ' + initialLow + ' ' + initialHigh);
+//     let targetIndex = bs.search(initialLow, initialHigh)
+
+//     // targetIndex = -1 for Not Found
+//     if (targetIndex < 0) {
+//         console.log('*** TARGET NOT IN LIST ***')
+//     } else {
+//         console.log('*** TARGET ' + targetin + ' FOUND AT INDEX ' + targetIndex + ' IN LIST  ' + listin)
+//     }
+// }
+
+// if (process.argv.length > 2) {
+//     cli.readArgTo2DArray(process.argv[2], function (cliInput) {
+//          runClient(cliInput);
+//     });
  
- } else {
-     file.readLinesTo2DArray(INPUT_FILE_PATH, function (fileInput) {
-         runClient(fileInput);
-     });
- }
+//  } else {
+//      file.readLinesTo2DArray(INPUT_FILE_PATH, function (fileInput) {
+//          runClient(fileInput);
+//      });
+//  }

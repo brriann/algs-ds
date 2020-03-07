@@ -21,17 +21,43 @@ const INPUT_FILE_PATH = '/home/ubuntu/Dev/algs-ds/input/8threesum3.txt'
 class threesumopt { 
     constructor(list) {
         this.list = list;
+        this.iSort = new insertionsort();
+        this.bSearch = new binarysearch();
+
+        this.foundTriples = [];
+    }
+
+    storeFoundTriples(triple) {
+
     }
 
     threesum(list) {
+        console.log('input list: ');
+        console.log(list);
+
+        this.iSort.sort(list);
+
+        console.log('sorted list: ');
+        console.log(list);
+
         let n = list.length;
         let count = 0;
+
         for (let i = 0; i < n; i++) {
             for (let j = i + 1; j < n; j++) {
-                let ij = list[i] + list[j];
+                let ij = -(list[i] + list[j]);
+                let indexIj = this.bSearch.search(0, n - 1, ij, list);
+                if (indexIj >= 0 && list[i] < list[j] && list[j] < ij) {
+                    console.log('3-SUM: ' + list[i] + ' ' + list[j] + ' ' + ij); // ij = list[indexIj] = list[i] + list[j]
+                    count += 1;
+                    this.foundTriples.push([list[i], list[j], list[indexIj]])
+                }
             }
         }
+        console.log('*** 3- SUM RESULTS ***');
         console.log('count: ' + count);
+        console.log('Found Triples:');
+        console.log(this.foundTriples);
     }
 }
 
