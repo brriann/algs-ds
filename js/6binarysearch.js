@@ -35,14 +35,14 @@ class binarysearch {
 
         while (low <= high && !found) {
             let middle = parseInt(low + ((high-low) / 2));
-            console.log('SEARCH lo hi: ' + low + ' ' + high);
-            console.log('cald\'d mid: ' + middle);
+            //console.log('SEARCH lo hi: ' + low + ' ' + high);
+            //console.log('cald\'d mid: ' + middle);
 
             if (list[middle] > target) {
-                console.log('go lower');
+                //console.log('go lower');
                 high = middle - 1;
             } else if (list[middle] < target) {
-                console.log('go higher');
+                //console.log('go higher');
                 low = middle + 1;
             } else  {
                 foundIndex = middle;

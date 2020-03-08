@@ -13,7 +13,7 @@
 
 import sys, importlib.util
 
-INPUT_FILE_PATH = '/home/ubuntu/Dev/algs-ds/input/8threesum3.txt'
+INPUT_FILE_PATH = '/home/ubuntu/Dev/algs-ds/input/8threesum1.txt'
 
 def module_from_file(module_name, file_path):
     spec = importlib.util.spec_from_file_location(module_name, file_path)
