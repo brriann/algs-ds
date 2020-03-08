@@ -4,4 +4,5 @@
 .DS_Store
 *.class
 tools/__pycache__
+py/__pycache__
 *.pyc
