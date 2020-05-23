@@ -14,31 +14,40 @@ package java1;
 
 import java.util.Arrays;
 
-public class StackLinkedList {
+public class QueueLinkedList {
 
-    public static String INPUT_FILE_PATH = "/home/ubuntu/Dev/algs-ds/input/9stack1.txt";
+    public static String INPUT_FILE_PATH = "/home/ubuntu/Dev/algs-ds/input/9stack2.txt";
     
     private Node firstNode = null;
+    private Node lastNode = null;
 
     private class Node {
         int item;
         Node nextNode;
     }
     
-    public StackLinkedList() {
+    public QueueLinkedList() {
 
     }
 
-    public void push(int item) {
-        Node oldFirstNode = firstNode;
-        firstNode = new Node();
-        firstNode.item = item;
-        firstNode.nextNode = oldFirstNode;
+    public void enQueue(int item) {
+        Node oldLastNode = lastNode;
+        lastNode = new Node();
+        lastNode.item = item;
+        lastNode.nextNode = null;
+        if (isEmpty()) {
+            firstNode = lastNode;
+        } else  {
+            oldLastNode.nextNode = lastNode;
+        }
     }
 
-    public int pop() {
+    public int deQueue() {
         int item = firstNode.item;
         firstNode = firstNode.nextNode;
+        if (isEmpty()) {
+            lastNode = null;
+        }
         return item;
     }
 
@@ -57,19 +66,19 @@ public class StackLinkedList {
         return sizeTracker;
     }
 
-    public int[] stackValues() {
+    public int[] queueValues() {
         if (isEmpty() || size() == 0) {
             return new int[0];
         } else {
-            int[] stackValues = new int[size()];
+            int[] queueValues = new int[size()];
             int index = 0;
             Node nodeTracker = firstNode;
 
             while (nodeTracker != null) {
-                stackValues[index++] = nodeTracker.item;
+                queueValues[index++] = nodeTracker.item;
                 nodeTracker = nodeTracker.nextNode;
             }
-            return stackValues;
+            return queueValues;
         }
     }
 
@@ -79,24 +88,24 @@ public class StackLinkedList {
 
     private static void runClient(int[][] inputs) {
 
-        StackLinkedList sll = new StackLinkedList();
+        QueueLinkedList qll = new QueueLinkedList();
 
         for (int i : inputs[0]) {
             if (i == 777) {
-                System.out.println(String.format("Popped from stack: %d", sll.pop()));
-                System.out.println(String.format("Stack size: %d", sll.size()));
+                System.out.println(String.format("dequeued from queue: %d", qll.deQueue()));
+                System.out.println(String.format("Queue size: %d", qll.size()));
             } else {
-                sll.push(i);
-                System.out.println(String.format("Pushed on: %d", i));
-                System.out.println(String.format("Stack size: %d", sll.size()));
+                qll.enQueue(i);
+                System.out.println(String.format("Enqueued: %d", i));
+                System.out.println(String.format("Queue size: %d", qll.size()));
             }
         }
-        int finalSize = sll.size();
+        int finalSize = qll.size();
         if (finalSize > 0) {
-            System.out.println("Final stack (last-first/top-bottom/newest-oldest):");
-            System.out.println(Arrays.toString(sll.stackValues()));
-        } else if (sll.isEmpty()) {
-            System.out.println("Final stack is empty.");
+            System.out.println("Final queue (first-last/oldest-newest):");
+            System.out.println(Arrays.toString(qll.queueValues()));
+        } else if (qll.isEmpty()) {
+            System.out.println("Final queue is empty.");
         } else {
             System.out.println("Error? final size and isEmpty don't agree.");
         }
