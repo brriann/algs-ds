@@ -15,20 +15,29 @@ var cli = require('/home/ubuntu/Dev/algs-ds/tools/cli.js');
 
 const INPUT_FILE_PATH = '/home/ubuntu/Dev/algs-ds/input/9stack2.txt'
 
-class stacklinkedlist { 
+class queuelinkedlist { 
 
     constructor() {
         this.firstNode = null;
+        this.lastNode = null;
     }
 
-    push(item) {
-        let oldFirstNode = this.firstNode;
-        this.firstNode = new node(item, oldFirstNode);
+    enQueue(item) {
+        let oldLastNode = this.lastNode;
+        this.lastNode = new node(item, null);
+        if (this.isEmpty()) {
+            this.firstNode = this.lastNode;
+        } else {
+            oldLastNode.nextNode = this.lastNode;
+        }
     }
 
-    pop() {
+    deQueue() {
         let item = this.firstNode.item;
         this.firstNode = this.firstNode.nextNode;
+        if (this.isEmpty()) {
+            this.lastNode = null;
+        }
         return item;
     }
 
@@ -46,19 +55,19 @@ class stacklinkedlist {
         return sizeTracker;
     }
 
-    stackValues() {
+    queueValues() {
         if (this.isEmpty() || this.size() == 0) {
             return new [];
         } else {
-            let stackValues = [];
+            let queueValues = [];
             let index = 0;
             let nodeTracker = this.firstNode;
 
             while (nodeTracker != null) {
-                stackValues[index++] = nodeTracker.item;
+                queueValues[index++] = nodeTracker.item;
                 nodeTracker = nodeTracker.nextNode;
             }
-            return stackValues;
+            return queueValues;
         }
     }
 }
@@ -78,25 +87,25 @@ class node {
 
 function runClient (inputs) {
 
-    let sll = new stacklinkedlist();
+    let qll = new queuelinkedlist();
 
     inputs[0].forEach(function (item) {
         if (item == 777) {
-            console.log("Popped from stack: " + sll.pop());
-            console.log("Stack size: " + sll.size());
+            console.log("dequeued from queue: " + qll.deQueue());
+            console.log("queue size: " + qll.size());
         } else {
-            sll.push(item);
-            console.log("Pushed on: " + item);
-            console.log("Stack size: " + sll.size());
+            qll.enQueue(item);
+            console.log("enqueued: " + item);
+            console.log("queue size: " + qll.size());
         }
     });
         
-    let finalSize = sll.size();
+    let finalSize = qll.size();
     if (finalSize > 0) {
-        console.log("Final stack (last-first/top-bottom/newest-oldest):");
-        console.log(sll.stackValues());
-    } else if (sll.isEmpty()) {
-        console.log("Final stack is empty.");
+        console.log("Final queue (last-first/top-bottom/newest-oldest):");
+        console.log(qll.queueValues());
+    } else if (qll.isEmpty()) {
+        console.log("Final queue is empty.");
     } else {
         console.log("Error? final size and isEmpty don't agree.");
     }
