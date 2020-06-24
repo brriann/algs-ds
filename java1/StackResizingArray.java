@@ -17,6 +17,7 @@ import java.util.Arrays;
 public class StackResizingArray {
 
     public static String INPUT_FILE_PATH = "/home/ubuntu/Dev/algs-ds/input/9stack2.txt";
+    public static String INPUT_FILE_PATH_2 = "/Users/brianfoster/dev/algs-ds/input/9stack2.txt";
     
     private int[] stackArray;
     private int N = 0;
@@ -102,7 +103,7 @@ public class StackResizingArray {
         if (args.length > 0) {
             runClient(CliReader.readArgTo2DArray(args[0]));
         } else {
-            runClient(FileReader.readLinesTo2DArray(INPUT_FILE_PATH));
+            runClient(FileReader.readLinesTo2DArray(INPUT_FILE_PATH_2));
         }
     }
 }

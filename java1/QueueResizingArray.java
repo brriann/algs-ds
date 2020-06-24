@@ -17,11 +17,12 @@ import java.util.Arrays;
 public class QueueResizingArray {
 
     public static String INPUT_FILE_PATH = "/home/ubuntu/Dev/algs-ds/input/9stack2.txt";
+    public static String INPUT_FILE_PATH_2 = "/Users/brianfoster/dev/algs-ds/input/9stack2.txt";
     
     private int[] queueArray;
     private int N = 0;
-    private int first;
-    private int last;
+    private int first = 0;
+    private int last = 0;
 
     public QueueResizingArray() {
         queueArray = new int[1];
@@ -118,7 +119,7 @@ public class QueueResizingArray {
         if (args.length > 0) {
             runClient(CliReader.readArgTo2DArray(args[0]));
         } else {
-            runClient(FileReader.readLinesTo2DArray(INPUT_FILE_PATH));
+            runClient(FileReader.readLinesTo2DArray(INPUT_FILE_PATH_2));
         }
     }
 }
