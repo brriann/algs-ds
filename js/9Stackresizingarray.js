@@ -16,7 +16,12 @@ var cli = require('/Users/brianfoster/dev/algs-ds/tools/cli.js');
 const INPUT_FILE_PATH = '/home/ubuntu/Dev/algs-ds/input/9stack2.txt';
 const INPUT_FILE_PATH_2 = '/Users/brianfoster/dev/algs-ds/input/9stack2.txt'
 
-class stacklinkedlist { 
+class stackresizingarray { 
+
+    //
+    // TODO: research Object.seal()
+    //
+
 
     constructor() {
         this.firstNode = null;
@@ -79,24 +84,24 @@ class node {
 
 function runClient (inputs) {
 
-    let sll = new stacklinkedlist();
+    let sra = new stackresizingarray();
 
     inputs[0].forEach(function (item) {
         if (item == 777) {
-            console.log("Popped from stack: " + sll.pop());
-            console.log("Stack size: " + sll.size());
+            console.log("Popped from stack: " + sra.pop());
+            console.log("Stack size: " + sra.size());
         } else {
-            sll.push(item);
+            sra.push(item);
             console.log("Pushed on: " + item);
-            console.log("Stack size: " + sll.size());
+            console.log("Stack size: " + sra.size());
         }
     });
         
-    let finalSize = sll.size();
+    let finalSize = sra.size();
     if (finalSize > 0) {
         console.log("Final stack (last-first/top-bottom/newest-oldest):");
-        console.log(sll.stackValues());
-    } else if (sll.isEmpty()) {
+        console.log(sra.stackValues());
+    } else if (sra.isEmpty()) {
         console.log("Final stack is empty.");
     } else {
         console.log("Error? final size and isEmpty don't agree.");

@@ -10,10 +10,11 @@
 // input of 777 will print popped int from stack
 //
 
-var file = require('/home/ubuntu/Dev/algs-ds/tools/file.js');
-var cli = require('/home/ubuntu/Dev/algs-ds/tools/cli.js');
+var file = require('/Users/brianfoster/dev/algs-ds/tools/file.js');
+var cli = require('/Users/brianfoster/dev/algs-ds/tools/cli.js');
 
-const INPUT_FILE_PATH = '/home/ubuntu/Dev/algs-ds/input/9stack2.txt'
+const INPUT_FILE_PATH = '/home/ubuntu/Dev/algs-ds/input/9stack2.txt';
+const INPUT_FILE_PATH_2 = '/Users/brianfoster/dev/algs-ds/input/9stack2.txt';
 
 class queuelinkedlist { 
 
@@ -117,7 +118,7 @@ if (process.argv.length > 2) {
     });
  
  } else {
-     file.readLinesTo2DArray(INPUT_FILE_PATH, function (fileInput) {
+     file.readLinesTo2DArray(INPUT_FILE_PATH_2, function (fileInput) {
          runClient(fileInput);
      });
  }

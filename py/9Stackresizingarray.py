@@ -25,6 +25,10 @@ specCli.loader.exec_module(cli)
 
 class stackresizingarray:
 
+    #
+    # TODO: research https://stackoverflow.com/questions/6142689/initialising-an-array-of-fixed-size-in-python
+    #
+
     def __init__(self):
         self.firstNode = None
     
