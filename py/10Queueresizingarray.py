@@ -12,14 +12,17 @@
 
 import sys, importlib.util
 
-INPUT_FILE_PATH = '/home/ubuntu/Dev/algs-ds/input/9stack2.txt'
-INPUT_FILE_PATH_2 = '/Users/brianfoster/dev/algs-ds/input/9stack2.txt'
+onUbuntu = True
 
-specFile = importlib.util.spec_from_file_location('file', '/Users/brianfoster/dev/algs-ds/tools/file.py')
+baseDevFolder = '/home/ubuntu/Dev' if onUbuntu else '/Users/brianfoster/dev'
+
+INPUT_FILE_PATH = baseDevFolder + '/algs-ds/input/9stack2.txt'
+
+specFile = importlib.util.spec_from_file_location('file', baseDevFolder + '/algs-ds/tools/file.py')
 file = importlib.util.module_from_spec(specFile)
 specFile.loader.exec_module(file)
 
-specCli = importlib.util.spec_from_file_location('cli', '/Users/brianfoster/dev/algs-ds/tools/cli.py')
+specCli = importlib.util.spec_from_file_location('cli', baseDevFolder + '/algs-ds/tools/cli.py')
 cli = importlib.util.module_from_spec(specCli)
 specCli.loader.exec_module(cli)
 
@@ -101,4 +104,4 @@ def runClient(inputs):
 if len(sys.argv) > 1:
     runClient(cli.readArgTo2DArray(sys.argv[1]))
 else:
-    runClient(file.readLinesTo2DArray(INPUT_FILE_PATH_2))
+    runClient(file.readLinesTo2DArray(INPUT_FILE_PATH))
