@@ -23,64 +23,53 @@ const INPUT_FILE_PATH = baseDevFolder + '/algs-ds/input/9stack2.txt';
 
 class stackresizingarray { 
 
-    //
-    // TODO: research Object.seal()
-    //
-
-
     constructor() {
-        this.firstNode = null;
+        this.stackArray = new Array(1);
+        this.N = 0;
     }
 
     push(item) {
-        let oldFirstNode = this.firstNode;
-        this.firstNode = new node(item, oldFirstNode);
+        if (this.N === this.stackArray.length) {
+            this.resize(2 * this.stackArray.length);
+        }
+        this.stackArray[this.N++] = item;
     }
 
     pop() {
-        let item = this.firstNode.item;
-        this.firstNode = this.firstNode.nextNode;
-        return item;
+        if (this.N > 0 && this.N == (this.stackArray.length / 4)) {
+            this.resize(this.stackArray.length /2);
+        }
+        return this.stackArray[--this.N];
     }
 
     isEmpty() {
-        return this.firstNode == null;
+        return this.N == 0;
+    }
+
+    resize(capacity) {
+        let copyArray = new Array(capacity);
+        for (let i = 0; i < this.N; i++) {
+            copyArray[i] = this.stackArray[i];
+        }
+        this.stackArray = copyArray;
     }
 
     size() {
-        let sizeTracker = 0;
-        let nodeTracker = this.firstNode;
-        while (nodeTracker != null) {
-            sizeTracker++;
-            nodeTracker = nodeTracker.nextNode;
-        }
-        return sizeTracker;
+        return this.N;
     }
 
     stackValues() {
         if (this.isEmpty() || this.size() == 0) {
             return new [];
         } else {
-            let stackValues = [];
-            let index = 0;
-            let nodeTracker = this.firstNode;
-
-            while (nodeTracker != null) {
-                stackValues[index++] = nodeTracker.item;
-                nodeTracker = nodeTracker.nextNode;
+            let stackValues = new Array(this.size());
+            for (let i = 0; i < this.N; i++) {
+                stackValues[i] = this.stackArray[i];
             }
             return stackValues;
         }
     }
 }
-
-class node {
-    constructor (item, nextNode) {
-        this.item = item;
-        this.nextNode = nextNode;
-    }   
-}
-
 
 //
 // CLIENT
