@@ -28,42 +28,41 @@ specCli.loader.exec_module(cli)
 
 class stackresizingarray:
 
-    #
-    # TODO: research https://stackoverflow.com/questions/6142689/initialising-an-array-of-fixed-size-in-python
-    #
-
     def __init__(self):
-        self.firstNode = None
+        self.stackArray = [None]
+        self.N = 0
     
     def push(self, item):
-        oldFirstNode = self.firstNode
-        self.firstNode = node(item, oldFirstNode)
+        if self.N == len(self.stackArray):
+            self.resize(2 * len(self.stackArray))
+        self.stackArray[self.N] = item
+        self.N = self.N + 1
 
     def pop(self):
-        item = self.firstNode.item
-        self.firstNode = self.firstNode.nextNode
-        return item
+        if self.N > 0 and self.N == (len(self.stackArray) / 4):
+            self.resize(len(self.stackArray) / 2)
+        self.N = self.N - 1
+        return self.stackArray[self.N]
     
     def isEmpty(self):
-        return self.firstNode is None
+        return self.N == 0
     
     def size(self):
-        sizeTracker = 0
-        nodeTracker = self.firstNode
-        while nodeTracker is not None:
-            sizeTracker = sizeTracker + 1
-            nodeTracker = nodeTracker.nextNode
-        return sizeTracker
+        return self.N
+    
+    def resize(self, capacity):
+        copyArray = [None] * capacity
+        for i in range(self.N):
+            copyArray[i] = self.stackArray[i]
+        self.stackArray = copyArray
 
     def stackValues(self):
         if self.isEmpty() or self.size() == 0:
             return []
         else:
-            stackValues = []
-            nodeTracker = self.firstNode
-            while nodeTracker is not None:
-                stackValues.append(nodeTracker.item)
-                nodeTracker = nodeTracker.nextNode
+            stackValues = [None] * self.size()
+            for i in range(self.N):
+                stackValues[i] = self.stackArray[i]
             return stackValues
 
 
