@@ -85,7 +85,7 @@ public class QueueResizingArray {
         } else {
             int[] queueValues = new int[size()];
             for (int i = 0; i < N; i++) {
-                queueValues[i] = queueArray[first + i];
+                queueValues[i] = queueArray[(first + i) % queueArray.length];
             }
             return queueValues;
         }

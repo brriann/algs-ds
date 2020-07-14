@@ -12,7 +12,7 @@
 
 import sys, importlib.util
 
-onUbuntu = True
+onUbuntu = False
 
 baseDevFolder = '/home/ubuntu/Dev' if onUbuntu else '/Users/brianfoster/dev'
 
@@ -29,51 +29,55 @@ specCli.loader.exec_module(cli)
 class queueresizingarray:
 
     def __init__(self):
-        self.firstNode = None
-        self.lastNode = None
+        self.queueArray = [None]
+        self.N = 0
+        self.first = 0
+        self.last = 0
     
     def enQueue(self, item):
-        oldLastNode = self.lastNode
-        self.lastNode = node(item, None)
-        if self.isEmpty():
-            self.firstNode = self.lastNode
-        else:
-            oldLastNode.nextNode = self.lastNode
+        if self.N == len(self.queueArray):
+            self.resize(2 * len(self.queueArray))
+        self.queueArray[self.last] = item
+        self.last = self.last + 1
+        if self.last == len(self.queueArray):
+            self.last = 0
+        self.N = self.N + 1
 
     def deQueue(self):
-        item = self.firstNode.item
-        self.firstNode = self.firstNode.nextNode
-        if self.isEmpty():
-            self.lastNode = None
+        item = self.queueArray[self.first]
+        self.queueArray[self.first] = None
+        self.N = self.N - 1
+        self.first = self.first + 1
+        if self.first == len(self.queueArray):
+            self.first = 0
+        if self.N > 0 and self.N == len(self.queueArray) / 4:
+            self.resize(len(self.queueArray) / 2)
         return item
     
     def isEmpty(self):
-        return self.firstNode is None
-    
+        return self.N == 0
+
+    def resize(self, capacity):
+        if capacity >= self.N:
+            copyArray = [None] * capacity
+            for i in range(self.N):
+                copyArray[i] = self.queueArray[(self.first + i) % len(self.queueArray)]
+            self.queueArray = copyArray
+            self.first = 0
+            self.last = self.N
+
     def size(self):
-        sizeTracker = 0
-        nodeTracker = self.firstNode
-        while nodeTracker is not None:
-            sizeTracker = sizeTracker + 1
-            nodeTracker = nodeTracker.nextNode
-        return sizeTracker
+        return self.N
 
     def queueValues(self):
         if self.isEmpty() or self.size() == 0:
             return []
         else:
-            queueValues = []
-            nodeTracker = self.firstNode
-            while nodeTracker is not None:
-                queueValues.append(nodeTracker.item)
-                nodeTracker = nodeTracker.nextNode
+            queueValues = [None] * self.size()
+            for i in range(self.N):
+                queueValues[i] = self.queueArray[(self.first + i) % len(self.queueArray)]
             return queueValues
 
-
-class node:
-    def __init__(self, item, nextNode):
-        self.item = item
-        self.nextNode = nextNode
     
 
 def runClient(inputs):

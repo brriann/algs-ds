@@ -10,7 +10,7 @@
 // input of 777 will print popped int from stack
 //
 
-var onUbuntu = true;
+var onUbuntu = false;
 
 var baseDevFolder = onUbuntu 
     ? '/home/ubuntu/Dev'
@@ -19,70 +19,73 @@ var baseDevFolder = onUbuntu
 var file = require(baseDevFolder + '/algs-ds/tools/file.js');
 var cli = require(baseDevFolder + '/algs-ds/tools/cli.js');
 
-const INPUT_FILE_PATH = baseDevFolder + '/algs-ds/input/9stack2.txt';
+const INPUT_FILE_PATH = baseDevFolder + '/algs-ds/input/9stack1.txt';
 
 class queueresizingarray { 
 
     constructor() {
-        this.firstNode = null;
-        this.lastNode = null;
+        this.queueArray = new Array(1);
+        this.N = 0;
+        this.first = 0;
+        this.last = 0;
     }
 
     enQueue(item) {
-        let oldLastNode = this.lastNode;
-        this.lastNode = new node(item, null);
-        if (this.isEmpty()) {
-            this.firstNode = this.lastNode;
-        } else {
-            oldLastNode.nextNode = this.lastNode;
+        if (this.N === this.queueArray.length) {
+            this.resize(2 * this.queueArray.length);
         }
+        this.queueArray[this.last++] = item;
+        if (this.last === this.queueArray.length) {
+            this.last = 0;
+        }
+        this.N++;
     }
 
     deQueue() {
-        let item = this.firstNode.item;
-        this.firstNode = this.firstNode.nextNode;
-        if (this.isEmpty()) {
-            this.lastNode = null;
+        let item = this.queueArray[this.first];
+        this.queueArray[this.first] = null;
+        this.N--;
+        this.first++;
+        if (this.first === this.queueArray.length) {
+            this.first = 0;
+        }
+        if (this.N > 0 && this.N === this.queueArray.length / 4) {
+            this.resize(this.queueArray.length / 2);
         }
         return item;
     }
 
     isEmpty() {
-        return this.firstNode == null;
+        return this.N === 0;
+    }
+
+    resize(capacity) {
+        if (capacity >= this.N) {
+            let copyArray = new Array(capacity);
+            for (let i = 0; i < this.N; i++) {
+                copyArray[i] = this.queueArray[(this.first + i) % this.queueArray.length];
+            }
+            this.queueArray = copyArray;
+            this.first = 0;
+            this.last = this.N;
+        }
     }
 
     size() {
-        let sizeTracker = 0;
-        let nodeTracker = this.firstNode;
-        while (nodeTracker != null) {
-            sizeTracker++;
-            nodeTracker = nodeTracker.nextNode;
-        }
-        return sizeTracker;
+        return this.N;
     }
 
     queueValues() {
         if (this.isEmpty() || this.size() == 0) {
             return new [];
         } else {
-            let queueValues = [];
-            let index = 0;
-            let nodeTracker = this.firstNode;
-
-            while (nodeTracker != null) {
-                queueValues[index++] = nodeTracker.item;
-                nodeTracker = nodeTracker.nextNode;
+            let queueValues = new Array(this.size());
+            for (let i = 0; i < this.N; i++) {
+                queueValues[i] = this.queueArray[(this.first + i) % this.queueArray.length];
             }
             return queueValues;
         }
     }
-}
-
-class node {
-    constructor (item, nextNode) {
-        this.item = item;
-        this.nextNode = nextNode;
-    }   
 }
 
 
