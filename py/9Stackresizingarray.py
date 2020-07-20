@@ -65,6 +65,16 @@ class stackresizingarray:
                 stackValues[i] = self.stackArray[i]
             return stackValues
 
+    def hasNext(self):
+        i = self.N
+        return i > 0
+    
+    def next(self):
+        currentNode = self.firstNode
+        item = currentNode.item
+        currentNode = currentNode.nextNode
+        return item 
+
 
 class node:
     def __init__(self, item, nextNode):

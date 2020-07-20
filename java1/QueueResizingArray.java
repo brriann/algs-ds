@@ -91,6 +91,17 @@ public class QueueResizingArray {
         }
     }
 
+    public boolean hasNext() {
+        int i = N;
+        return i > 0;
+    }
+
+    public int next() {
+        // for a true iterator, this would be assigned outside of the next method.
+        int i = N;
+        return queueArray[--i];
+    }
+
     //
     // CLIENT
     //

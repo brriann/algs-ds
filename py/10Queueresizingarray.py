@@ -78,6 +78,15 @@ class queueresizingarray:
                 queueValues[i] = self.queueArray[(self.first + i) % len(self.queueArray)]
             return queueValues
 
+    def hasNext(self):
+        i = self.N
+        return i > 0
+    
+    def next(self):
+        i = self.N
+        i = i - 1
+        return self.stackArray[i]
+
     
 
 def runClient(inputs):

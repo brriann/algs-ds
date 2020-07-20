@@ -69,6 +69,18 @@ class stackresizingarray {
             return stackValues;
         }
     }
+
+    hasNext() {
+        // i would be assigned at instantiation of iterator, not inside this function
+        var i = this.N;
+        return i > 0;
+    }
+
+    next() {
+        // i would be assigned at instantiation of iterator, not inside this function
+        var i = this.N;
+        return this.stackArray[--i];
+    }
 }
 
 //

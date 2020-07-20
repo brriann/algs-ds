@@ -79,6 +79,19 @@ public class StackLinkedList {
         }
     }
 
+    public boolean hasNext() {
+        Node currentNode = firstNode;
+        return currentNode != null;
+    }
+
+    public int next() {
+        // for a true iterator, this would be assigned outside of the next method.
+        Node currentNode = firstNode;
+        int currentInt = currentNode.item;
+        currentNode = currentNode.nextNode;
+        return currentInt;
+    }
+
     //
     // CLIENT
     //

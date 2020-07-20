@@ -62,6 +62,16 @@ class stacklinkedlist:
                 nodeTracker = nodeTracker.nextNode
             return stackValues
 
+    def hasNext(self):
+        currentNode = self.firstNode
+        return currentNode is not None
+    
+    def next(self):
+        currentNode = self.firstNode
+        item = currentNode.item
+        currentNode = currentNode.nextNode
+        return item
+
 
 class node:
     def __init__(self, item, nextNode):

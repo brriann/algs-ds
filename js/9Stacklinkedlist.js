@@ -66,6 +66,20 @@ class stacklinkedlist {
             return stackValues;
         }
     }
+
+    hasNext() {
+        // currentNode would be assigned at instantiation of iterator, not inside this function
+        var currentNode = this.firstNode;
+        return currentNode != null;
+    }
+
+    next() {
+        // currentNode would be assigned at instantiation of iterator, not inside this function
+        var currentNode = this.firstNode;
+        var item = currentNode.item;
+        currentNode = currentNode.nextNode;
+        return item;
+    }
 }
 
 class node {
