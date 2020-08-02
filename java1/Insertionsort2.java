@@ -15,7 +15,7 @@ package java1;
 
 import java.util.Arrays;
 
-public class Insertionsort {
+public class Insertionsort2 {
 
     public static boolean onUbuntu = false;
 
@@ -25,11 +25,37 @@ public class Insertionsort {
 
     public static String INPUT_FILE_PATH = baseDevFolder + "/algs-ds/input/7insertionsort1.txt";
 
-     public Insertionsort() {
+     public Insertionsort2() {
 
      }
 
-    public static void sort(int[] list) {
+     private static boolean less(int v, int w) {
+         // this would be more meaningful for Comparables.
+         // but only doing int's for now.
+         return v < w;
+     }
+
+     private static void exchange(int[] array, int i, int j) {
+         int swap = array[i];
+         array[i] = array[j];
+         array[j] = swap;
+     }
+
+
+    public static void newSort(int[] list) {
+        for (int i = 0; i < list.length; i++) {
+            for (int j = i; j > 0; j--) {
+                if (less(list[j], list[j - 1])) {
+                    exchange(list, j, j - 1);
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+
+    // from a previous implementation of Insertionsort...see Insertionsort.java
+    public static void oldSort(int[] list) {
         for (int i = 1; i < list.length; i++) {
             int j = i - 1;
             int temp = list[i];
@@ -51,8 +77,8 @@ public class Insertionsort {
         System.out.println("Unsorted list:");
         System.out.println(Arrays.toString(list));
 
-        Insertionsort is = new Insertionsort();
-        is.sort(list);
+        Insertionsort2 is = new Insertionsort2();
+        is.newSort(list);
 
         System.out.println("Sorted list:");
         System.out.println(Arrays.toString(list));
