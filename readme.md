@@ -47,25 +47,25 @@ See docs/classnotes.txt for more info.
 
     10b. resizing-array 
 
-11. Iterator
+(Iterator)
 
     11a. linked-list
 
     11b. array
 
-12. Selection Sort
+11. Selection Sort
 
-13. Insertion Sort
+11. Insertion Sort
 
-14. Shellsort
+12. Shellsort
 
-15. Fisher-Yates/Knuth Shuffle
+13. Fisher-Yates/Knuth Shuffle
 
-16. Graham Scan - Convex Hull
+14. Graham Scan - Convex Hull
 
-17. Mergesort
+15. Mergesort
 
-18. Bottom-up Mergesort
+16. Bottom-up Mergesort
 
 19. Comparator
 
