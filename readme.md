@@ -47,11 +47,7 @@ See docs/classnotes.txt for more info.
 
     10b. resizing-array 
 
-(Iterator)
-
-    11a. linked-list
-
-    11b. array
+(Iterator for linked-list and array)
 
 11. Selection Sort
 
