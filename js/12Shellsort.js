@@ -20,7 +20,7 @@ var baseDevFolder = onUbuntu
 var file = require(baseDevFolder + '/algs-ds/tools/file.js');
 var cli = require(baseDevFolder + '/algs-ds/tools/cli.js');
 
-const INPUT_FILE_PATH = baseDevFolder + '/algs-ds/input/7insertionsort1.txt';
+const INPUT_FILE_PATH = baseDevFolder + '/algs-ds/input/12shellsort1.txt';
 
 class shellsort { 
     constructor() {
@@ -38,7 +38,25 @@ class shellsort {
     }
 
     sort(list) {
-        // TODO!
+        var N = list.length;
+
+        var h = 1;
+
+        while (h < N / 3) {
+            h = 3 * h + 1;
+        }
+
+        while (h >= 1) {
+            console.log("H is " + h);
+
+            for (let i = h; i < N; i++) {
+                for (let j = i; j >= h && this.less(list[j], list[j-h]); j -= h) {
+                    console.log("i is " + i + ", j is " + j);
+                    this.exchange(list, j, j - h);
+                }
+            }
+            h = h / 3 | 0;
+        }
     }
 }
 

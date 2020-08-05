@@ -42,8 +42,22 @@ class shellsort:
         listB[j] = swap
 
     def sort(self, listA):
-        # to do
+        N = len(listA)
 
+        h = 1
+        while h < N // 3:
+            h = 3 * h + 1
+        while h >= 1:
+            for i in range(h, N):
+                temp = listA[i]
+
+                j = i
+                while j >= h and listA[j - h] > temp:
+                    listA[j] = listA[j - h]
+                    j -= h
+                
+                listA[j] = temp
+            h = h // 3
 
 ##
 ## CLIENT

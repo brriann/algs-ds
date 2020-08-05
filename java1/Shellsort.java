@@ -23,7 +23,7 @@ public class Shellsort {
         ? "/home/ubuntu/Dev" 
         : "/Users/brianfoster/dev";
 
-    public static String INPUT_FILE_PATH = baseDevFolder + "/algs-ds/input/7insertionsort1.txt";
+    public static String INPUT_FILE_PATH = baseDevFolder + "/algs-ds/input/12shellsort1.txt";
 
      public Shellsort() {
 
@@ -43,7 +43,25 @@ public class Shellsort {
 
 
     public static void sort(int[] list) {
-        // todo!
+        int N = list.length;
+
+        int h = 1;
+
+        while (h < N / 3) {
+            h = 3 * h + 1;
+        }
+
+        while (h >= 1) {
+            System.out.println(String.format("H is %d", h));
+
+            for (int i = h; i < N; i++) {
+                for (int j = i; j >= h && less(list[j], list[j-h]); j -= h) {
+                    System.out.println(String.format("i is %d, j is %d", i, j));
+                    exchange(list, j, j - h);
+                }
+            }
+            h = h / 3;
+        }
     }
     
     //
