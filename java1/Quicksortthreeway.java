@@ -27,10 +27,10 @@ public class Quicksortthreeway {
         random = new Random(seed);
     }
 
-    public static boolean onUbuntu = false;
+    public static boolean onUbuntu = true;
 
     public static String baseDevFolder = onUbuntu 
-        ? "/home/ubuntu/Dev" 
+        ? "/home/ubuntu/dev" 
         : "/Users/brianfoster/dev";
 
     public static String INPUT_FILE_PATH = baseDevFolder + "/algs-ds/input/12shellsort1.txt";
@@ -97,12 +97,12 @@ public class Quicksortthreeway {
         }
     }
 
-    private static void sort(int[] a) {
+    private void sort(int[] a) {
         shuffle(a);
         sort(a, 0, a.length - 1);
     }
 
-    private static void sort(int[] a, int lo, int hi) {
+    private void sort(int[] a, int lo, int hi) {
         if (hi <= lo) {
             return;
         }

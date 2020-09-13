@@ -27,10 +27,10 @@ public class Quickselect {
         random = new Random(seed);
     }
 
-    public static boolean onUbuntu = false;
+    public static boolean onUbuntu = true;
 
     public static String baseDevFolder = onUbuntu 
-        ? "/home/ubuntu/Dev" 
+        ? "/home/ubuntu/dev" 
         : "/Users/brianfoster/dev";
 
     public static String INPUT_FILE_PATH = baseDevFolder + "/algs-ds/input/12shellsort1.txt";
