@@ -63,11 +63,11 @@ public class PriorityQueue {
     }
 
     public int[] getArray() {
-        int[] copyOfFive = new int[5];
-        for (int i = 0; i < 5; i ++) {
-            copyOfFive[i] = pq[i];
+        int[] copyOfCapacity = new int[Capacity];
+        for (int i = 0; i < Capacity; i ++) {
+            copyOfCapacity[i] = pq[i];
         }
-        return copyOfFive;
+        return copyOfCapacity;
     }
 
 
@@ -92,7 +92,7 @@ public class PriorityQueue {
 
         // Find minimum 5 values in stream
 
-        PriorityQueue pq = new PriorityQueue(5);
+        PriorityQueue pq = new PriorityQueue(7);
 
         for (int i = 0; i < list.length; i++) {
             pq.insert(list[i]);
