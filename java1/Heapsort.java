@@ -17,7 +17,7 @@ import java.util.Arrays;
 
 public class Heapsort {
 
-    public static boolean onUbuntu = false;
+    public static boolean onUbuntu = true;
 
     public static String baseDevFolder = onUbuntu 
         ? "/home/ubuntu/dev" 
@@ -58,17 +58,16 @@ public class Heapsort {
         return copyOfCapacity;
     }
 
-    public Heapsort() {
-
-    }
-
     public void sort() {
         int N = hsa.length;
 
+        // first pass: build heap using bottom-up method
         for (int k = N / 2; k >= 1; k--) {
             sink(hsa, k, N);
         }
 
+        // remove the maximum, one at a time
+        // leave in array instead of nulling out
         while (N > 1) {
             exchange(hsa, 1, N);
             sink(hsa, 1, --N);
