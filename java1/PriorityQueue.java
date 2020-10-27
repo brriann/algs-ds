@@ -47,6 +47,7 @@ public class PriorityQueue {
         return N > Capacity;
     }
 
+    // unordered array implementation. do not insert at ordered index. just insert.
     public void insert(int x) {
         pq[N++] = x;
     }

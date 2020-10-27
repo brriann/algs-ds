@@ -17,7 +17,7 @@ import java.util.Arrays;
 
 public class BinaryHeap {
 
-    public static boolean onUbuntu = false;
+    public static boolean onUbuntu = true;
 
     public static String baseDevFolder = onUbuntu 
         ? "/home/ubuntu/dev" 
@@ -113,13 +113,12 @@ public class BinaryHeap {
         BinaryHeap pq = new BinaryHeap(5);
 
         for (int i = 0; i < list.length; i++) {
+            pq.insert(list[i]);
+            print(String.format("Inserted: %d", list[i]));
             if (pq.isOverCapacity()) {
                 int deletedMax = pq.deleteMax();
                 print(String.format("Deleted Max: %d", deletedMax));
-            } else {
-                pq.insert(list[i]);
-            print(String.format("Inserted: %d", list[i]));
-            }            
+            }          
         }
         print(Arrays.toString(pq.getArray()));
 
