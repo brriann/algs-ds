@@ -4,6 +4,9 @@
 #include <vector>
 #include <sstream>
 
+#include "cli.h"
+#include "file.h"
+
 using std::cout;
 using std::endl;
 using std::string;
@@ -11,18 +14,21 @@ using std::vector;
 using std::stringstream;
 using std::stoi;
 
+using utils::readArgTo2dVector;
+using utils::readFileTo2dVector;
+
 // CLI expected format "./a.out 1-2-3/4-5-6/7-8-9"
 // to represent the file format:
 // 1 2 3
 // 4 5 6
 // 7 8 9
 
-vector<int> splitStringToInts(string);
+const string INPUT_FILE_PATH = "./../input/7insertionsort1.txt";
 
 int main (int argc, char **argv)
 {
     cout << "args: " << (argc - 1) << endl;
-
+    vector<vector<int>> vector2d;
     if ((argc - 1) > 0)
     {
         cout << "argv:\n";
@@ -30,30 +36,28 @@ int main (int argc, char **argv)
         {
             cout << argv[i] << endl;
         }
-        vector<int> splitArg1 = splitStringToInts(argv[1]);
-        for (int s : splitArg1)
-        {
-            cout << s << endl;
-        }
+
+        vector2d = readArgTo2dVector(argv[1]);
+        
     }
     else
     {
         cout << "no args, using file...\n";
-        // TODO: file reader
+        
+        vector2d = readFileTo2dVector(INPUT_FILE_PATH);
     }
-    
-    
+
+    for (vector<int> vi : vector2d)
+    {
+        for (int i : vi)
+        {
+            cout << i << " ";
+        }
+        cout << endl;
+    }
+
     return 0;
 }
 
-vector<int> splitStringToInts(string delimitedString)
-{
-    stringstream ss(delimitedString);
-    vector<int> intVector;
-    string temp;
-    while(getline(ss, temp, '-'))
-    {
-        intVector.push_back(stoi(temp));
-    }
-    return intVector;
-}
+
+
