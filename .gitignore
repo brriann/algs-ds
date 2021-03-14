@@ -6,4 +6,4 @@
 tools/__pycache__
 py/__pycache__
 *.pyc
-cpp/a.out
+**/a.out
