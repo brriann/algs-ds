@@ -56,6 +56,12 @@ Balance condition maintained - Insert and Delete operations are still O(log(n)),
 
 Balance condition guarantees O(log(n)) tree height, and therefore O(log(n)) search/insert/delete complexity.
 
+Rotations between nodes in a subtree as the subtree's root node becomes imbalanced from insert/delete operations
+
+### Splay Tree
+
+### B Tree
+
 ### Hash Table
 
 Insert, Delete, and Search operations in average O(1) time.
