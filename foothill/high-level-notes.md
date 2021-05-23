@@ -66,9 +66,53 @@ Rotations between nodes in a subtree as the subtree's root node becomes imbalanc
 
 Insert, Delete, and Search operations in average O(1) time.
 
+Only a subset of BST / ordered set operations are available - no findMin, findMax, outputInSortedOrder
+
+Sacrifice sorted order for increased speed on the core set, of set operations
+
+### Perfect Hashing
+
+### Cuckoo Hashing
+
+### Hopscotch Hashing
+
+### Extendible Hashing
+
+### Priority Queue
+
+### Binary Heap
+
+### d-Heap
+
+### Leftist Heap
+
+### Skew Heap
+
+### Binomial Queue
+
 ## Algorithms
 
 ### Binary Search
 
 ### Merge, Merge Sort
+
+### Heap Sort
+
+### Insertion Sort
+
+### Selection Sort
+
+### Shell Sort
+
+### Heap Sort
+
+### Quick Sort
+
+### Quick Select
+
+### Bucket Sort
+
+### Radix Sort
+
+### External SOrting
 
