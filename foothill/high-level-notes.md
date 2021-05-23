@@ -102,6 +102,8 @@ Sacrifice sorted order for increased speed on the core set, of set operations
 
 ### Selection Sort
 
+### Bubble Sort
+
 ### Shell Sort
 
 ### Heap Sort
