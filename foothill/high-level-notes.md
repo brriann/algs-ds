@@ -94,10 +94,6 @@ Sacrifice sorted order for increased speed on the core set, of set operations
 
 ### Binary Search
 
-### Merge, Merge Sort
-
-### Heap Sort
-
 ### Insertion Sort
 
 O(n^2) in-place sort.  Elements from start of the array to main iterator are sorted.  However, it is not a partition, since elements can be inserted into that sorted section.  (Primary iterator covers collection 1x.  Secondary iterator covers sorted elements, finding spot to insert next element.)
@@ -110,9 +106,11 @@ O(n^2) in-place sort.  Sorted partition forms at start of array and grows.  (Pri
 
 O(n^2) in-place sort. Sorted partition forms at the end of collection.
 
-### Shell Sort
+### Merge, Merge Sort
 
 ### Heap Sort
+
+### Shell Sort
 
 ### Quick Sort
 
