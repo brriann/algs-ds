@@ -104,6 +104,8 @@ Sacrifice sorted order for increased speed on the core set, of set operations
 
 ### Bubble Sort
 
+O(n^2) in-place sort. Sorted partition forms at the high end of collection.
+
 ### Shell Sort
 
 ### Heap Sort
