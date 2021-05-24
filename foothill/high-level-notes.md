@@ -100,11 +100,15 @@ Sacrifice sorted order for increased speed on the core set, of set operations
 
 ### Insertion Sort
 
+O(n^2) in-place sort.  Elements from start of the array to main iterator are sorted.  However, it is not a partition, since elements can be inserted into that sorted section.  (Primary iterator covers collection 1x.  Secondary iterator covers sorted elements, finding spot to insert next element.)
+
 ### Selection Sort
+
+O(n^2) in-place sort.  Sorted partition forms at start of array and grows.  (Primary iterator covers collection 1x.  Secondary iterator covers unsorted elements, finding next minimum element, to be placed at the end of the sorted parition.)
 
 ### Bubble Sort
 
-O(n^2) in-place sort. Sorted partition forms at the high end of collection.
+O(n^2) in-place sort. Sorted partition forms at the end of collection.
 
 ### Shell Sort
 
@@ -118,5 +122,5 @@ O(n^2) in-place sort. Sorted partition forms at the high end of collection.
 
 ### Radix Sort
 
-### External SOrting
+### External Sorting
 
