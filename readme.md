@@ -17,3 +17,10 @@ hackerrank problems implemented
 
 ctci
 cracking the coding interview problems implemented
+
+triplebyte
+
+rosalind
+
+project euler
+
