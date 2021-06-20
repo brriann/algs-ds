@@ -19,7 +19,7 @@ const string CELL_SPACE = "  ";
 
 class Maze {
 public:
-   Maze() : width(10), height(10) {
+   Maze(int heightCtr, int widthCtr) : height(heightCtr), width(widthCtr) {
       for (int i = 0; i < height; ++i) {
          vector<MazeCell> mazeRow;
          for (int j = 0; j < width; ++j) {
