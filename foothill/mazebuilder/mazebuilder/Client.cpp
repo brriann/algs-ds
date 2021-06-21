@@ -4,6 +4,7 @@
 #include "Random.h"
 #include "UnionFind.h"
 
+using std::cout;
 
 // UTILITY VARIABLES AND FUNCTIONS
 const int MAZE_WIDTH = 10;
@@ -17,12 +18,31 @@ int main()
 {
    Maze maze = Maze(MAZE_HEIGHT, MAZE_WIDTH);
    UnionFind uf = UnionFind(MAZE_HEIGHT * MAZE_WIDTH);
-   std::cout << maze.print();
-   while (!uf.allCellsConnected()) {
+   Random rand = Random();
+   cout << maze.print();
+   int counter = 0;
+   while (!uf.twoCellsConnected(convert2dIdxTo1dIdx(0, 0), convert2dIdxTo1dIdx(MAZE_HEIGHT - 1, MAZE_WIDTH - 1))) { // !uf.allCellsConnected()
+      ++counter;
       // pick a random cell
-      // pick random [right/down]
+      int rowSource = rand.getInt(MAZE_HEIGHT - 2); // don't want last row - will be connecting downward
+      int colSource = rand.getInt(MAZE_WIDTH - 2); // don't want last col - will be connecting to right
 
+      // pick random [right/down]
+      bool connectRight = (rand.getInt(1) == 1); // 0 down, 1 right...
+      int rowTarget = connectRight ? rowSource : rowSource + 1;
+      int colTarget = connectRight? colSource + 1 : colSource;
+
+      // if cell and cell to the [right/down] aren't connected
+      if (!uf.twoCellsConnected(convert2dIdxTo1dIdx(rowSource, colSource), convert2dIdxTo1dIdx(rowTarget, colTarget))) {
+         // set connected[right/down] to true on the target cell
+         maze.setCellConnected(rowSource, colSource, connectRight);
+         // and join the cells in unionfind data structure
+         uf.unionTwoCells(convert2dIdxTo1dIdx(rowSource, colSource), convert2dIdxTo1dIdx(rowTarget, colTarget));
+      }
+      cout << maze.print();
    }
+   cout << endl << endl;
+   cout << maze.print();
 
    return 0;
 }

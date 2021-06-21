@@ -42,7 +42,7 @@ public:
       for (int i = 0; i < height; ++i) {
          // print each cell - connectedRight or |
          for (int j = 0; j < width; ++j) {
-            ss << CELL_SPACE << (mazeGrid[i][j].connectedRight ? CELL_SPACE : SIDE_BORDER);
+            ss << CELL_SPACE << (mazeGrid[i][j].connectedRight ? " " : SIDE_BORDER);
          }
          ss << endl;
          // print each cell lower border - connectedDown or _
@@ -52,6 +52,14 @@ public:
          ss << endl;
       }
       return ss.str();
+   }
+   void setCellConnected(int row, int col, bool connectRight) {
+      if (connectRight) {
+         mazeGrid[row][col].connectedRight = true;
+      }
+      else {
+         mazeGrid[row][col].connectedDown = true;
+      }
    }
 
 private:
