@@ -7,7 +7,7 @@
 using std::cout;
 
 // UTILITY VARIABLES AND FUNCTIONS
-const int MAZE_WIDTH = 70;
+const int MAZE_WIDTH = 60;
 const int MAZE_HEIGHT = 20;
 
 int convert2dIdxTo1dIdx(int row, int col) {
@@ -24,8 +24,8 @@ int main()
    int counter = 0;
    while (!uf.twoCellsConnected(convert2dIdxTo1dIdx(0, 0), convert2dIdxTo1dIdx(MAZE_HEIGHT - 1, MAZE_WIDTH - 1))) { // !uf.allCellsConnected()
       // pick a random cell
-      int rowSource = rand.getInt(MAZE_HEIGHT - 1); // don't want last row - will be connecting downward
-      int colSource = rand.getInt(MAZE_WIDTH - 1); // don't want last col - will be connecting to right
+      int rowSource = rand.getInt(MAZE_HEIGHT - 1);
+      int colSource = rand.getInt(MAZE_WIDTH - 1);
 
       // pick random [right/down]
       bool connectRight = (rand.getInt(1) == 1); // 0 down, 1 right...
