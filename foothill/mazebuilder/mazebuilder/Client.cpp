@@ -7,11 +7,12 @@
 using std::cout;
 
 // UTILITY VARIABLES AND FUNCTIONS
-const int MAZE_WIDTH = 10;
-const int MAZE_HEIGHT = 10;
+const int MAZE_WIDTH = 70;
+const int MAZE_HEIGHT = 20;
 
 int convert2dIdxTo1dIdx(int row, int col) {
-   return (row * MAZE_WIDTH) + col;
+   int asdf = (row * MAZE_WIDTH) + col;
+   return asdf;
 }
 
 int main()
@@ -22,13 +23,20 @@ int main()
    cout << maze.print();
    int counter = 0;
    while (!uf.twoCellsConnected(convert2dIdxTo1dIdx(0, 0), convert2dIdxTo1dIdx(MAZE_HEIGHT - 1, MAZE_WIDTH - 1))) { // !uf.allCellsConnected()
-      ++counter;
       // pick a random cell
-      int rowSource = rand.getInt(MAZE_HEIGHT - 2); // don't want last row - will be connecting downward
-      int colSource = rand.getInt(MAZE_WIDTH - 2); // don't want last col - will be connecting to right
+      int rowSource = rand.getInt(MAZE_HEIGHT - 1); // don't want last row - will be connecting downward
+      int colSource = rand.getInt(MAZE_WIDTH - 1); // don't want last col - will be connecting to right
 
       // pick random [right/down]
       bool connectRight = (rand.getInt(1) == 1); // 0 down, 1 right...
+
+      // escape out of bounds cases
+      if ((connectRight && colSource == MAZE_WIDTH - 1)
+         || (!connectRight && rowSource == MAZE_HEIGHT - 1)) {
+         continue;
+      }
+
+
       int rowTarget = connectRight ? rowSource : rowSource + 1;
       int colTarget = connectRight? colSource + 1 : colSource;
 
@@ -40,6 +48,7 @@ int main()
          uf.unionTwoCells(convert2dIdxTo1dIdx(rowSource, colSource), convert2dIdxTo1dIdx(rowTarget, colTarget));
       }
       cout << maze.print();
+      ++counter;
    }
    cout << endl << endl;
    cout << maze.print();

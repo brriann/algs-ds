@@ -16,6 +16,7 @@ using std::endl;
 const string BOTTOM_BORDER = "___";
 const string SIDE_BORDER = "|";
 const string CELL_SPACE = "  ";
+const string EMPTY_BOTTOM_BORDER = "   ";
 
 class Maze {
 public:
@@ -46,8 +47,8 @@ public:
          }
          ss << endl;
          // print each cell lower border - connectedDown or _
-         for (int j = 0; j < width; ++j) {
-            ss << "" << (mazeGrid[i][j].connectedDown ? "" : BOTTOM_BORDER);
+         for (int k = 0; k < width; ++k) {
+            ss << (mazeGrid[i][k].connectedDown ? EMPTY_BOTTOM_BORDER : BOTTOM_BORDER);
          }
          ss << endl;
       }
