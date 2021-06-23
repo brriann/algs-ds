@@ -2,25 +2,23 @@ This is a repo of data structures and algorithms implemented in C++, Java, Pytho
 
 Folders:
 
-foothill
-CS2C class at Foothill College Spring 2021
+foothill: CS2C class at Foothill College Spring 2021
 
-princeton
-Algs 1 and Algs 2, Princeton, Sedgewick, Wayne
-algs4.cs.princeton.edu
+princeton: Algs 1 and Algs 2, Princeton, Sedgewick, Wayne: algs4.cs.princeton.edu
 
-leetcode
-leetcode problems implemented
+leetcode 
 
 hackerrank
-hackerrank problems implemented
 
-ctci
-cracking the coding interview problems implemented
+ctci: cracking the coding interview problems implemented
 
 triplebyte
 
 rosalind
 
 project euler
+
+daily
+
+daily coding problem email list
 
