@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{19bb0f88-6a52-4d04-b2aa-68a741d04e7c}</ProjectGuid>
-    <RootNamespace>farthestnode</RootNamespace>
+    <ProjectGuid>{3e1d68a0-c1cc-4f70-82bd-6928a1ae084f}</ProjectGuid>
+    <RootNamespace>maxflow</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="farthestNode.cpp" />
+    <ClCompile Include="maxflow.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

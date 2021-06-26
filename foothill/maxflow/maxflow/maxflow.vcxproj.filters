@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="farthestNode.cpp">
+    <ClCompile Include="maxflow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
