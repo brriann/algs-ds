@@ -25,10 +25,6 @@ struct Vertex {
       pathDistance = -1;
       pathPrevious = nullptr;
    }
-   Vertex(string nameCtr, int inDegreeCtr, int outDegreeCtr) : name(nameCtr) {
-      pathDistance = -1;
-      pathPrevious = nullptr;
-   }
    string name;
    int pathDistance; // for path finding
    Vertex* pathPrevious; // for path finding
