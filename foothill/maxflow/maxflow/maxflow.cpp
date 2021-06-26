@@ -102,9 +102,7 @@ struct Graph {
          if (adjacencyList[v->name][(*(it + 1))->name] < minFlowCapacity) {
             minFlowCapacity = adjacencyList[v->name][(*(it + 1))->name];
          }
-
       }
-
       return minFlowCapacity;
    }
    void addFlowToPath(vector<Vertex*>& path, int flowAdded, bool isResidual = false) {
@@ -135,7 +133,6 @@ struct Graph {
             ss << "From " << (*it).first << " to " << (*it2).first << " : " << (*it2).second << endl;
          }
       }
-
       return ss.str();
    }
    map<string, Vertex*> vertices;
