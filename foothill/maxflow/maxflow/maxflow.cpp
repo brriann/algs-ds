@@ -2,9 +2,12 @@
 #include <vector>
 #include <string>
 #include <utility>
+#include <algorithm>
 #include <map>
 #include <queue>
+#include <sstream>
 
+using std::stringstream;
 using std::map;
 using std::queue;
 using std::pair;
@@ -19,20 +22,16 @@ const int INFINITY_NUMBER = 999999;
 
 struct Vertex {
    Vertex(string nameCtr) : name(nameCtr) {
-      inDegree = 0;
-      outDegree = 0;
       pathDistance = -1;
       pathPrevious = nullptr;
    }
-   Vertex(string nameCtr, int inDegreeCtr, int outDegreeCtr) : name(nameCtr), inDegree(inDegreeCtr), outDegree(outDegreeCtr) {
+   Vertex(string nameCtr, int inDegreeCtr, int outDegreeCtr) : name(nameCtr) {
       pathDistance = -1;
       pathPrevious = nullptr;
    }
-   int inDegree;
-   int outDegree;
    string name;
    int pathDistance; // for path finding
-   Vertex* pathPrevious;
+   Vertex* pathPrevious; // for path finding
 };
 
 struct DirectedEdge {
@@ -44,22 +43,26 @@ struct DirectedEdge {
 
 struct Graph {
    Graph(vector<Vertex*> verticesCtr, vector<DirectedEdge*> edgesCtr, bool isResidual = false) {
-      vertices = verticesCtr;
       edges = edgesCtr;
 
+      for (Vertex*& vertex : verticesCtr) {
+         vertices[vertex->name] = vertex;
+      }
+
       for (DirectedEdge*& edge : edgesCtr) {
-         adjacencyList[edge->source->name].push_back(make_pair(edge->target, edge->flowCapacity));
+         adjacencyList[edge->source->name][edge->target->name] = edge->flowCapacity;
          // add residual backtracking / flow-undo edges
          if (isResidual) {
-            adjacencyList[edge->target->name].push_back(make_pair(edge->source, 0));
+            adjacencyList[edge->target->name][edge->source->name] = 0;
          }
       }
    }
    bool findPath(Vertex* source, Vertex* sink, vector<Vertex*>& pathVertices) {
       queue<Vertex*> q;
-      for (Vertex*& vertex : vertices) {
-         vertex->pathDistance = INFINITY_NUMBER;
-         vertex->pathPrevious = nullptr;
+ 
+      for (auto it = vertices.begin(); it != vertices.end(); it++) {
+         (*it).second->pathDistance = INFINITY_NUMBER;
+         (*it).second->pathPrevious = nullptr;
       }
 
       source->pathDistance = 0;
@@ -69,11 +72,11 @@ struct Graph {
          Vertex* v = q.front();
          q.pop();
 
-         for (pair<Vertex*, int>& adjacentVertex : adjacencyList[v->name]) {
-            if (adjacentVertex.first->pathDistance == INFINITY_NUMBER) {
-               adjacentVertex.first->pathDistance = v->pathDistance + 1;
-               adjacentVertex.first->pathPrevious = v;
-               q.push(adjacentVertex.first);
+         for (auto it = adjacencyList[v->name].begin(); it != adjacencyList[v->name].end(); it++) {
+            if (((*it).second > 0) && (vertices[(*it).first]->pathDistance == INFINITY_NUMBER)) {
+               vertices[(*it).first]->pathDistance = v->pathDistance + 1;
+               vertices[(*it).first]->pathPrevious = v;
+               q.push(vertices[(*it).first]);
             }
          }
       }
@@ -93,18 +96,17 @@ struct Graph {
    }
    int findMinFlowCapacityForPath(vector<Vertex*>& path) {
       int minFlowCapacity = INFINITY_NUMBER;
-      
+
       for (auto it = path.begin(); it != path.end(); it++) {
          Vertex* v = *it;
          if (v == *(path.end() - 1)) {
             break;
          }
 
-         for (pair<Vertex*, int>& adjacentVertex : adjacencyList[v->name]) {
-            if (adjacentVertex.first == (*(it + 1)) && adjacentVertex.second < minFlowCapacity) {
-               minFlowCapacity = adjacentVertex.second;
-            }
+         if (adjacencyList[v->name][(*(it + 1))->name] < minFlowCapacity) {
+            minFlowCapacity = adjacencyList[v->name][(*(it + 1))->name];
          }
+
       }
 
       return minFlowCapacity;
@@ -116,29 +118,33 @@ struct Graph {
             break;
          }
 
-         for (pair<Vertex*, int>& adjacentVertex : adjacencyList[v->name]) {
-            if (adjacentVertex.first->name == (*(it + 1))->name) {
-               if (isResidual) {
-                  // subtract flow from forward edge
-                  adjacentVertex.second -= flowAdded;
+         if (isResidual) {
+            // subtract flow from forward edge
+            adjacencyList[v->name][(*(it + 1))->name] -= flowAdded;
 
-                  // add flow to backward / undo edge
-                  for (pair<Vertex*, int>& adjacentVertexBackwards : adjacencyList[adjacentVertex.first->name]) {
-                     if (adjacentVertexBackwards.first->name == v->name) {
-                        adjacentVertex.second += flowAdded;
-                     }
-                  }
-               }
-               else {
-                  adjacentVertex.second += flowAdded;
-               }
-            }
+            // add flow to backward / undo edge
+            adjacencyList[(*(it + 1))->name][v->name] += flowAdded;
+         }
+         else {
+            // add flow to forward edge
+            adjacencyList[v->name][(*(it + 1))->name] += flowAdded;
          }
       }
    }
-   vector<Vertex*> vertices;
+   string print() {
+      stringstream ss;
+
+      for (auto it = adjacencyList.begin(); it != adjacencyList.end(); it++) {
+         for (auto it2 = (*it).second.begin(); it2 != (*it).second.end(); it2++) {
+            ss << "From " << (*it).first << " to " << (*it2).first << " : " << (*it2).second << endl;
+         }
+      }
+
+      return ss.str();
+   }
+   map<string, Vertex*> vertices;
    vector<DirectedEdge*> edges;
-   map<string, vector<pair<Vertex*, int> > > adjacencyList;
+   map<string, map<string, int> > adjacencyList;
 };
 
 int main() {
@@ -239,6 +245,7 @@ int main() {
    }
 
    cout << "Max Flow path is ..." << endl;
+   cout << flowGraph.print();
 
    return 0;
 }
