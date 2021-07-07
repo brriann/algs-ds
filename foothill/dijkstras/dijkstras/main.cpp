@@ -10,6 +10,7 @@
 using std::stringstream;
 using std::map;
 using std::queue;
+using std::priority_queue;
 using std::pair;
 using std::make_pair;
 using std::vector;
@@ -39,6 +40,18 @@ struct DirectedEdge {
    int weight;
 };
 
+struct PriorityQueueEntry {
+   Vertex* vertex;
+   Vertex* prevVertex;
+   int pathWeight;
+
+   PriorityQueueEntry(Vertex* vertexCtr, Vertex* prevVertexCtr, int pathWeightCtr) : vertex(vertexCtr), prevVertex(prevVertexCtr), pathWeight(pathWeightCtr) {}
+
+   // for min heap PQ behavior
+   bool operator<(const PriorityQueueEntry& rhs) const {
+      return pathWeight > rhs.pathWeight;
+   }
+};
 
 
 struct Graph {
@@ -52,6 +65,39 @@ struct Graph {
       for (DirectedEdge*& edge : edgesCtr) {
          adjacencyList[edge->source->name].push_back(make_pair(edge->target->name, edge->weight));
       }
+   }
+   void sparseDijkstras(Vertex* source) {
+      priority_queue<PriorityQueueEntry> q;
+      for (auto it = vertices.begin(); it != vertices.end(); it++) {
+         (*it).second->pathDistance = INFINITY_NUMBER;
+         (*it).second->known = false;
+      }
+
+      q.emplace(source, nullptr, 0);
+
+      while (!q.empty()) {
+         const PriorityQueueEntry entry = q.top();
+         q.pop();
+
+         if (vertices[entry.vertex->name]->known) {
+            continue;
+         }
+         else {
+            if (entry.pathWeight < vertices[entry.vertex->name]->pathDistance) {
+               vertices[entry.vertex->name]->known = true;
+               vertices[entry.vertex->name]->pathDistance = entry.pathWeight;
+               vertices[entry.vertex->name]->pathPrevious = entry.prevVertex;
+
+               for (pair<string, int>& vertexNameWeightPair : adjacencyList[entry.vertex->name]) {
+                  if (!vertices[vertexNameWeightPair.first]->known &&
+                     (entry.pathWeight + vertexNameWeightPair.second) < vertices[vertexNameWeightPair.first]->pathDistance) {
+                     q.emplace(vertices[vertexNameWeightPair.first], entry.vertex, entry.pathWeight + vertexNameWeightPair.second);
+                  }
+               }
+            }
+         }
+      }
+
    }
    // this is not optimized for sparse graphs.
    void dijkstras(Vertex* source) {
@@ -180,7 +226,9 @@ int main()
 
    Graph graph = Graph(graphVertices, graphEdges);
 
-   graph.dijkstras(&v1);
+   //graph.dijkstras(&v1);
+   //cout << graph.printShortestPathsFrom(&v1);
+   graph.sparseDijkstras(&v1);
    cout << graph.printShortestPathsFrom(&v1);
    return 0;
 }
