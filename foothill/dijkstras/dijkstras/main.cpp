@@ -101,7 +101,6 @@ struct Graph {
    }
    // this is not optimized for sparse graphs.
    void dijkstras(Vertex* source) {
-      queue<Vertex*> q;
 
       for (auto it = vertices.begin(); it != vertices.end(); it++) {
          (*it).second->pathDistance = INFINITY_NUMBER;
@@ -109,7 +108,6 @@ struct Graph {
       }
 
       source->pathDistance = 0;
-      q.push(source);
 
       while (unknownDistanceVertexExists()) {
          Vertex* v = smallestUnknownDistanceVertex();
@@ -226,9 +224,9 @@ int main()
 
    Graph graph = Graph(graphVertices, graphEdges);
 
-   //graph.dijkstras(&v1);
-   //cout << graph.printShortestPathsFrom(&v1);
-   graph.sparseDijkstras(&v1);
+   graph.dijkstras(&v1);
    cout << graph.printShortestPathsFrom(&v1);
+   //graph.sparseDijkstras(&v1);
+   //cout << graph.printShortestPathsFrom(&v1);
    return 0;
 }
