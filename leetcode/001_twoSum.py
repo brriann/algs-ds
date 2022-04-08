@@ -18,7 +18,8 @@ class Solution(object):
                     return [i, j]
         def twoSumONLogN(self, nums, target):
             # TODO
+    
 # client
 sol = Solution()
 var = sol.twoSum([1,2,3], 4)
-print(var)
+ print(var)
