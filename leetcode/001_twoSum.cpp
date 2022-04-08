@@ -11,7 +11,7 @@ using std::endl;
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        return twoSumON(nums, target);
+        return twoSumONLogNOptimized(nums, target);
     }
 private:
     vector<int> twoSumONSquared(vector<int>& nums, int target) {
@@ -27,7 +27,7 @@ private:
         }
         return result;
     }
-    vector<int> twoSumON(vector<int>& nums, int target) {
+    vector<int> twoSumONLogN(vector<int>& nums, int target) {
         vector<int> result;
 
         map<int, vector<int>> eltIdxMap;
@@ -57,6 +57,24 @@ private:
                 }
                 return result;
             }
+        }
+        return result;
+    }
+        vector<int> twoSumONLogNOptimized(vector<int>& nums, int target) {
+        vector<int> result;
+
+        map<int, vector<int>> eltIdxMap;
+        // populate map of elt:[idx] O(n)
+        for (int i = 0; i < nums.size(); ++i) {
+            int complement = target - nums[i];
+            // std::map.count() O(log(n))
+            if (eltIdxMap.count(complement) > 0) {
+                result.push_back(eltIdxMap[complement][0]);
+                result.push_back(i);
+                break;
+            }
+            // we didn't find a match, so add current elt to the map
+            eltIdxMap[nums[i]].push_back(i);
         }
         return result;
     }
