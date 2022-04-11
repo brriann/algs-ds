@@ -27,6 +27,7 @@ private:
         }
         return result;
     }
+    // this solution builds a complete map of the int array first
     vector<int> twoSumONLogN(vector<int>& nums, int target) {
         vector<int> result;
 
@@ -60,7 +61,8 @@ private:
         }
         return result;
     }
-        vector<int> twoSumONLogNOptimized(vector<int>& nums, int target) {
+    // this optimized solution looks through the map for partner solution while building
+    vector<int> twoSumONLogNOptimized(vector<int>& nums, int target) {
         vector<int> result;
 
         map<int, vector<int>> eltIdxMap;

@@ -5,7 +5,7 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        return self.twoSumONSquared(nums, target)
+        return self.twoSumONLogN(nums, target)
     def twoSumONSquared(self, nums, target):
         """
         :type nums: List[int]
@@ -16,10 +16,15 @@ class Solution(object):
             for j in range(i + 1, len(nums)):
                 if nums[i] + nums[j] == target:
                     return [i, j]
-        def twoSumONLogN(self, nums, target):
-            # TODO
-    
-# client
+    def twoSumONLogN(self, nums, target):
+        eltIdxMap = {}
+        for i in range(len(nums)):
+            complement = target - nums[i]
+            if complement in eltIdxMap:
+                return [eltIdxMap[complement], i]
+            # no match found - so add current elt:idx to map
+            eltIdxMap[nums[i]] = i
+
 sol = Solution()
-var = sol.twoSum([1,2,3], 4)
- print(var)
+print(sol.twoSum([1,2,3], 5))
+
