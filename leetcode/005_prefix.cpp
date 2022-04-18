@@ -8,6 +8,7 @@ using std::vector;
 using std::cout;
 using std::endl;
 
+// https://leetcode.com/problems/longest-common-prefix/
 class Solution {
 public:
     string longestCommonPrefix(vector<string>& strs) {
