@@ -5,7 +5,8 @@ using std::vector;
 using std::cout;
 using std::endl;
 
-
+// https://leetcode.com/problems/remove-duplicates-from-sorted-array
+// TODO, rewrite without vector::erase which is O(n) in worst case
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
