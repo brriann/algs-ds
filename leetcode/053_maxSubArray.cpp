@@ -4,39 +4,33 @@
 using std::cout;
 using std::endl;
 using std::vector;
+using std::max;
 
 // https://leetcode.com/problems/maximum-subarray/
+
+// TODO, redo with divide-and-conquer algo.  this approach is O(n)
 
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
-        int maxSum = 0;
-        int sum = 0;
-        bool tracking = false;
-        for (int i = 0; i < nums.size(); ++i) {
-            // if not tracking, don't include negatives
-            if (!tracking && nums[i] < 0) {
-                continue;
-            }
-            // if tracking, and encounter a negative bigger than previous tracked sum, reset
-            if (tracking && nums[i] < 0 && (sum + nums[i]) < 0) {
-                if (sum > maxSum) {
-                    maxSum = sum;
-                }
-                tracking = false;
-                sum = 0;
-                continue;
-            }
+        if (nums.size() == 1) {
+            return nums[0];
+        }
 
-            tracking = true;
+        int sum = nums[0];
+        int maxSum = nums[0];
+        int vectorLength = nums.size();
+
+        for (int i = 1; i < vectorLength; ++i) {
             sum += nums[i];
 
-            if (sum > maxSum) {
-                maxSum = sum;
-            }
+            sum = max(sum, nums[i]);
+            maxSum = max(sum, maxSum);
         }
+
         return maxSum;
     }
+    
 };
 
 int main() {
@@ -49,7 +43,15 @@ int main() {
     vector<int> test5 = { 3, -4, 2 };
     vector<int> test6 = { -1 };
     vector<int> test7 = { -1, -2 };
+    vector<int> test8 = { -2, -1 };
+    vector<int> test9 = { -2, 1 };
 
-    int result = s.maxSubArray(test6);
-    cout << result << endl;
+    vector<vector<int>> testRuns = { test1, test2, test3, test4, test5, test6, test7, test8, test9 };
+
+    for (int i = 0; i < testRuns.size(); ++i) {
+        int result = s.maxSubArray(testRuns[i]);
+        cout << result << endl;
+    }
+    
+    return 0;
 }
