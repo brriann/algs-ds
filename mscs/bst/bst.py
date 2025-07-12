@@ -60,6 +60,7 @@ class BST(Generic[T]):
         else:
             # store data in dummy for return and remove node
             dummy.setData(node.getData())
+            self.size -= 1
 
             if node.getLeft() is None and node.getRight() is None:
                 return None
@@ -149,6 +150,30 @@ class BST(Generic[T]):
             elts.append(node.getData())
 
 
+    def levelOrder(self) -> list[T]:
+        elts: list[T] = []
+
+        queue = Queue[BSTNode[T]](maxsize = self.size)
+
+        if self.root is not None:
+            queue.put(self.root)
+
+        while not queue.empty():
+            curr = queue.get()
+
+            elts.append(curr.getData())
+
+            leftChild = curr.getLeft()
+            if leftChild is not None:
+                queue.put(leftChild)
+
+            rightChild = curr.getRight()
+            if rightChild is not None:
+                queue.put(rightChild)
+
+        return elts
+
+
     ### INVERT
 
     def invert(self) -> None:
@@ -180,5 +205,7 @@ class BST(Generic[T]):
     def getRoot(self) -> BSTNode[T] | None:
         return self.root
         
+    def getSize(self) -> int:
+        return self.size
 
             
