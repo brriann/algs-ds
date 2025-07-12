@@ -3,5 +3,10 @@
         "iostream": "cpp",
         "map": "cpp",
         "xhash": "cpp"
-    }
+    },
+    "python.testing.pytestArgs": [
+        "."
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
 }
