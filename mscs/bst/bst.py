@@ -1,7 +1,7 @@
 from typing import Generic
 # TODO, replace with my own queue implementation
 from queue import Queue
-from mscs.typeparam import T
+from mscs.common.typeparam import T
 from .bstnode import BSTNode
 
 class BST(Generic[T]):

@@ -1,5 +1,5 @@
 from typing import Generic
-from mscs.typeparam import T
+from mscs.common.typeparam import T
 
 
 class BSTNode(Generic[T]):
