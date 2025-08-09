@@ -1,6 +1,5 @@
 from typing import Generic
-# TODO, replace with my own queue implementation
-from queue import Queue
+from mscs.queue.linkedqueue import LinkedQueue
 from mscs.common.typeparam import T
 from .bstnode import BSTNode
 
@@ -153,23 +152,23 @@ class BST(Generic[T]):
     def levelOrder(self) -> list[T]:
         elts: list[T] = []
 
-        queue = Queue[BSTNode[T]](maxsize = self.size)
+        queue = LinkedQueue[BSTNode[T]]()
 
         if self.root is not None:
-            queue.put(self.root)
+            queue.enqueue(self.root)
 
         while not queue.empty():
-            curr = queue.get()
+            curr = queue.dequeue()
 
             elts.append(curr.getData())
 
             leftChild = curr.getLeft()
             if leftChild is not None:
-                queue.put(leftChild)
+                queue.enqueue(leftChild)
 
             rightChild = curr.getRight()
             if rightChild is not None:
-                queue.put(rightChild)
+                queue.enqueue(rightChild)
 
         return elts
 

@@ -1,5 +1,5 @@
 from typing import Generic
-from mscs.common.typeparam import T
+from mscs.common.typeparam import T, Comparable
 
 
 class BSTNode(Generic[T]):
@@ -32,6 +32,14 @@ class BSTNode(Generic[T]):
     
     def setRight(self, right: "BSTNode[T] | None") -> None:
         self.right = right
+
+    # invalid/unused, but allows LinkedQueue[BSTNode[T]]
+    def __lt__(self, other: "Comparable") -> bool:
+        return self < other
+    
+    # invalid/unused, but allows LinkedQueue[BSTNode[T]]
+    def __gt__(self, other: "Comparable") -> bool:
+        return self > other
 
 
 # # container for data transfer through recursive function returns

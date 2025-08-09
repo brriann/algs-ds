@@ -1,4 +1,4 @@
-# omscs
+# mscs
 
 Data Structures and Algorithms practice during MSCS
 
@@ -9,7 +9,7 @@ Data Structures and Algorithms practice during MSCS
 ```bash
 python3 -m venv ~/.venvs/algs
 source ~/.venvs/algs/bin/activate
-pip install -r ~/dev/algs-ds/omscs/requirements.txt
+pip install -r ~/dev/algs-ds/mscs/requirements.txt
 ```
 
 2. install Python & Python Debugger VSCode extensions
